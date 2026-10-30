@@ -19,7 +19,7 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 - [Asset register](REGISTER.md) — provisional inventory and review queue.
 - [Evidence standard](EVIDENCE.md) — how claims and sources are recorded.
-- [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.
+- [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.\n- [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.\n- [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
 
 ## Status vocabulary
 
