@@ -21,3 +21,14 @@ Use ISO dates (YYYY-MM-DD). Record decisions, evidence, owner of the action, and
 - **Boundary:** no mass repository restructuring until the Dawny pilot demonstrates which requirements are useful.
 - **Status:** standard v1.0 published; adoption not yet tested in a project repository.
 - **Next action:** use the scheduled Dawny and EN125 evidence review to establish the baseline, then apply the minimum viable standard to Dawny.
+
+
+## 2026-11-01 — Dawny and EN125 evidence review
+
+- **Decision:** record the repository evidence and unresolved rights questions for FIP-001 (Dawny-4pp), FIP-002 (Dawny-pup), and FIP-003 (EN125-Electric-Conversion-Canonical) in `REGISTER.md`.
+- **Dawny finding:** the private repository contains a local FastAPI/SQLite planning prototype and an MIT licence file, but no live remittance integration or money movement. The public companion repository is empty at review. No public disclosure of Dawny-4pp implementation was evidenced in the inspected GitHub locations.
+- **EN125 finding:** the root CC0 1.0 Universal licence text is present from the initial 2026-01-14 commit. Public Git history shows a high-level conversion concept, governance/structure documents, and a 2026-10-17/18 Cabo Verde research/planning package. The reviewed tree does not evidence a complete, validated conversion design. The cited `v1.0.0-canonical` tag reference does not resolve.
+- **Authorship treatment:** sampled GitHub commit records identify the `Francois-EF-WebOps` account as author. This is account-level attribution only; it does not establish sole authorship, inventorship, or ownership.
+- **Rights boundary:** no employment, client, contractor, educational, contributor-assignment, or third-party-rights records were available to complete either chain of title. Both project records therefore remain **Provisional**.
+- **Disclosure boundary:** commit dates are recorded as Git-history dates, not proof of the exact date either repository first became public. No patentability or filing conclusion is made. No private Dawny commit SHAs, source code, credentials, personal information, or unpublished technical detail are reproduced in this public register.
+- **Next action:** privately establish the creator/contributor and agreement history for both projects; confirm whether any employment/client obligations apply; reconcile the EN125 tag and divergent branch; and verify any disclosures outside GitHub before changing either record's status.
