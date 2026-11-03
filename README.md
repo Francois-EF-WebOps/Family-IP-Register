@@ -8,7 +8,7 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 1. **Family purpose:** preserve the family's ability to create, use, maintain, share, and benefit from its work over time.
 2. **Open by default, deliberately:** publish research and reusable tools where appropriate; do not assume every asset, dataset, source, or contribution can be relicensed or disclosed.
-3. **Evidence before claims:** distinguish verified facts, repository metadata, contributor statements, and unresolved questions.
+3. **Evidence before claims:** distinguish verified facts, repository metadata, contributor statements, and unresolved issues.
 4. **No retroactive assumptions:** a repository owner's account is not, by itself, proof of sole authorship, inventorship, or ownership.
 5. **Disclosure matters:** record the earliest known public disclosure and the licence in force at that time. Making a repository private later does not erase earlier disclosure.
 6. **Protect people:** never put personal family records, identity documents, credentials, private correspondence, children's information, or confidential source material in this public repository.
@@ -19,7 +19,10 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 - [Asset register](REGISTER.md) — provisional inventory and review queue.
 - [Evidence standard](EVIDENCE.md) — how claims and sources are recorded.
-- [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.\n- [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.\n- [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
+- [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.
+- [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.
+- [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
+- [Media and Character Asset Discovery](docs/MEDIA_ASSET_DISCOVERY.md) — cross-repository discovery of existing personas, presenter characters, voice references, and media assets; explicitly distinguishes verified leads from unlocated files.
 
 ## Status vocabulary
 
