@@ -81,7 +81,7 @@ Read-only by default. Require human approval for:
 
 ## First milestone
 
-Run `python3 scripts/portfolio.py scan . --format markdown` in a workspace containing cloned repositories. Verify that it reports local repository metadata only and works with network disabled. This is the proof that the core does not depend on paid AI.
+Run `python3 scripts/portfolio.py scan . --format markdown` in a workspace containing cloned repositories. The report prints to the terminal; each run also appends a metadata-only JSONL event to `.family-ops/logs/runtime.jsonl` by default. The terminal prints the log path to stderr. Use `--output reports/portfolio.md` to retain the inventory report as a file, and `--log-file path/to/runtime.jsonl` to choose another log location. Logs record start, success/failure, timestamp, duration, repository count and report path; they never record file contents, environment variables or secret values. Verify that it works with network disabled.
 
 ## Explicit non-goals for v0
 
