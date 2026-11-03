@@ -14,20 +14,31 @@ jobs:
       - name: Check out control repository
         uses: actions/checkout@v4
 
-      - name: Run offline portfolio scanner
+      - name: Run offline workspace scanner
         run: |
           python3 scripts/portfolio.py scan . \
             --format markdown \
-            --output reports/portfolio.md \
+            --output reports/workspace-scan.md \
             --log-file .family-ops/logs/runtime.jsonl
 
-      - name: Publish scan report and run log
+      - name: Run read-only GitHub account inventory
+        env:
+          GH_PORTFOLIO_TOKEN: ${{ secrets.GH_PORTFOLIO_TOKEN }}
+        run: |
+          python3 scripts/github_inventory.py \
+            --owner Francois-EF-WebOps \
+            --json-output reports/github-inventory.json \
+            --markdown-output reports/github-inventory.md
+
+      - name: Publish inventory, workspace report and run log
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: portfolio-scan-${{ github.run_number }}
+          name: portfolio-inventory-${{ github.run_number }}
           path: |
-            reports/portfolio.md
+            reports/workspace-scan.md
+            reports/github-inventory.md
+            reports/github-inventory.json
             .family-ops/logs/runtime.jsonl
           if-no-files-found: warn
           retention-days: 14
