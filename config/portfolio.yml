@@ -1,0 +1,27 @@
+schema_version: 1
+portfolio:
+  name: Family Projects
+  control_repository: Family-IP-Register
+  operating_mode: local_first
+  ai_required: false
+  network_required_for_core: false
+  default_worker_permissions: read_only
+  human_approval_required_for:
+    - file_mutation
+    - deletion
+    - merge
+    - publish
+    - deploy
+    - external_communication
+    - financial_operation
+    - licence_change
+    - ownership_claim
+  resource_policy:
+    one_codespace_at_a_time: true
+    stop_when_idle: true
+    no_background_polling: true
+    deterministic_checks_before_ai: true
+    bounded_agent_assignments: true
+  project_registry:
+    source: discover_local_git_repositories
+    require_explicit_project_passport: false
