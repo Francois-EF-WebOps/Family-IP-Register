@@ -1,0 +1,33 @@
+name: Portfolio scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out control repository
+        uses: actions/checkout@v4
+
+      - name: Run offline portfolio scanner
+        run: |
+          python3 scripts/portfolio.py scan . \
+            --format markdown \
+            --output reports/portfolio.md \
+            --log-file .family-ops/logs/runtime.jsonl
+
+      - name: Publish scan report and run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-scan-${{ github.run_number }}
+          path: |
+            reports/portfolio.md
+            .family-ops/logs/runtime.jsonl
+          if-no-files-found: warn
+          retention-days: 14
