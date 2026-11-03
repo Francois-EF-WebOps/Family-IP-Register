@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Offline-first inventory of Git repositories. Python standard library only."""
+"""Offline-first inventory of Git repositories with durable, redacted run logs."""
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import json
 import subprocess
+import sys
+import time
 from pathlib import Path
 
 
@@ -14,6 +17,7 @@ MARKERS = (
     "pyproject.toml", "package.json", "Cargo.toml", "go.mod",
     "requirements.txt", "pom.xml", "build.gradle", ".github/workflows",
 )
+SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".tox"}
 
 
 def git(path: Path, *args: str) -> str:
@@ -28,16 +32,29 @@ def git(path: Path, *args: str) -> str:
 
 
 def discover(root: Path, max_depth: int) -> list[Path]:
-    found: list[Path] = []
+    """Walk without descending into repository internals or common bulky folders."""
     root = root.resolve()
-    for candidate in [root, *root.rglob(".git")]:
-        repo = candidate if candidate.name != ".git" else candidate.parent
+    found: list[Path] = []
+    if git(root, "rev-parse", "--is-inside-work-tree") == "true":
+        found.append(root)
+
+    def walk(directory: Path, depth: int) -> None:
+        if depth >= max_depth:
+            return
         try:
-            depth = len(repo.relative_to(root).parts)
-        except ValueError:
-            continue
-        if depth <= max_depth and git(repo, "rev-parse", "--is-inside-work-tree") == "true":
-            found.append(repo)
+            children = sorted(directory.iterdir(), key=lambda p: p.name.lower())
+        except OSError:
+            return
+        for child in children:
+            if not child.is_dir() or child.is_symlink() or child.name in SKIP_DIRS:
+                continue
+            if (child / ".git").exists() and git(child, "rev-parse", "--is-inside-work-tree") == "true":
+                found.append(child)
+                # A repository is a boundary; do not scan nested content.
+                continue
+            walk(child, depth + 1)
+
+    walk(root, 0)
     return sorted(set(found), key=lambda p: str(p).lower())
 
 
@@ -80,6 +97,13 @@ def markdown(rows: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def append_log(path: Path, record: dict) -> None:
+    """Append one JSONL event. Records contain metadata only, never file contents or secrets."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(record, sort_keys=True) + "\n")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -88,18 +112,68 @@ def main() -> int:
     scan.add_argument("--max-depth", type=int, default=4)
     scan.add_argument("--format", choices=("json", "markdown"), default="json")
     scan.add_argument("--output", help="Write report to this path instead of stdout")
+    scan.add_argument(
+        "--log-file", default=".family-ops/logs/runtime.jsonl",
+        help="Append run events here (default: .family-ops/logs/runtime.jsonl)",
+    )
     args = parser.parse_args()
 
+    started = time.monotonic()
+    timestamp = datetime.now(timezone.utc).isoformat()
     root = Path(args.root).resolve()
-    rows = [inspect(repo, root) for repo in discover(root, args.max_depth)]
-    output = json.dumps({"repositories": rows}, indent=2) + "\n" if args.format == "json" else markdown(rows)
-    if args.output:
-        target = Path(args.output)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(output, encoding="utf-8")
-    else:
-        print(output, end="")
-    return 0
+    log_path = Path(args.log_file).resolve()
+    event = {
+        "timestamp": timestamp,
+        "event": "command_started",
+        "command": "scan",
+        "root": str(root),
+        "format": args.format,
+        "report_path": str(Path(args.output).resolve()) if args.output else None,
+    }
+    try:
+        append_log(log_path, event)
+        if not root.is_dir():
+            raise NotADirectoryError(f"Scan root is not a directory: {root}")
+        if args.max_depth < 0:
+            raise ValueError("--max-depth must be zero or greater")
+
+        rows = [inspect(repo, root) for repo in discover(root, args.max_depth)]
+        output = json.dumps({"repositories": rows}, indent=2) + "\n" if args.format == "json" else markdown(rows)
+        if args.output:
+            target = Path(args.output)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(output, encoding="utf-8")
+        else:
+            print(output, end="")
+
+        append_log(log_path, {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "event": "command_completed",
+            "command": "scan",
+            "status": "success",
+            "root": str(root),
+            "repository_count": len(rows),
+            "duration_ms": round((time.monotonic() - started) * 1000),
+            "report_path": str(Path(args.output).resolve()) if args.output else "stdout",
+        })
+        print(f"Log: {log_path}", file=sys.stderr)
+        return 0
+    except Exception as exc:
+        try:
+            append_log(log_path, {
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "event": "command_failed",
+                "command": "scan",
+                "status": "error",
+                "root": str(root),
+                "error_type": type(exc).__name__,
+                "error": str(exc),
+                "duration_ms": round((time.monotonic() - started) * 1000),
+            })
+        except OSError as log_exc:
+            print(f"Could not write runtime log: {log_exc}", file=sys.stderr)
+        print(f"Scan failed: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":
