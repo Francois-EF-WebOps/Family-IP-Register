@@ -19,7 +19,10 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 - [Asset register](REGISTER.md) — provisional inventory and review queue.
 - [Evidence standard](EVIDENCE.md) — how claims and sources are recorded.
-- [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.\n- [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.\n- [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
+- [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.
+- [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.
+- [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
+- [Media and Character Asset Discovery](docs/MEDIA_ASSET_DISCOVERY.md) — cross-repository discovery of existing personas, presenter characters, voice references, and media assets; verified leads are separated from unlocated files.
 
 ## Status vocabulary
 
