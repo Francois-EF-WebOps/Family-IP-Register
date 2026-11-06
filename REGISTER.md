@@ -40,6 +40,7 @@ These repositories are known to exist but have not yet been classified in this r
 | FIP-021 | [Refuge](https://github.com/Francois-EF-WebOps/Refuge) | Unreviewed |
 | FIP-022 | [Ultimate Nano Banana Pro Collection](https://github.com/Francois-EF-WebOps/Ultimate-Nano-Banana-Pro-Collection.-Fr) | Unreviewed |
 | FIP-023 | [editor](https://github.com/Francois-EF-WebOps/editor) | Unreviewed |
+| FIP-024 | [Fin & Nik creative saga](https://github.com/Francois-EF-WebOps/ai-music-provenance/tree/feat/fin-nik-album-01-starter/projects/fin-and-nik) | Provisional — fictional character profiles, Album 01 Track 01 draft lyrics/storyboard and generated image lead recorded; original character-sheet files, approved ZERO lyrics and complete rights/provenance chain not yet recovered |
 
 ## 3. Other named work — repository or ownership not yet confirmed
 
