@@ -18,12 +18,19 @@
       "description": "Male explorer; warm, witty mentor-explorer.",
       "attributes": {
         "role": "explorer and narrator",
-        "voice": ["warm", "witty", "mentor-like"],
+        "voice": [
+          "warm",
+          "witty",
+          "mentor-like"
+        ],
         "visual_rules": [],
         "movement_rules": [],
         "signature_phrases": []
       },
-      "source_refs": ["xanat export: chat (3).html", "xanat export: chat (4).html"]
+      "source_refs": [
+        "xanat export: chat (3).html",
+        "xanat export: chat (4).html"
+      ]
     },
     "persona.casual-duo": {
       "entity_type": "persona_group",
@@ -37,7 +44,10 @@
         "expression_rules": [],
         "personality_rules": []
       },
-      "source_refs": ["xanat export: chat (3).html", "xanat export: chat (4).html"],
+      "source_refs": [
+        "xanat export: chat (3).html",
+        "xanat export: chat (4).html"
+      ],
       "notes": "Individual character names and full character sheets must be recovered; do not invent them."
     },
     "persona.meiling": {
@@ -51,21 +61,112 @@
         "movement_rules": [],
         "character_sheet_ref": ""
       },
-      "source_refs": ["xanat export: chat (3).html", "xanat export: chat (4).html"]
+      "source_refs": [
+        "xanat export: chat (3).html",
+        "xanat export: chat (4).html"
+      ]
+    },
+    "character.fin": {
+      "entity_type": "character",
+      "display_name": "Fin",
+      "property_ref": "Blue-Sea-Print-Core",
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "attributes": {},
+      "source_refs": [
+        "Blue-Sea-Print-Core PR #3 and PR #4: Fin & Nik cast continuity documentation"
+      ],
+      "notes": "Name and existence are recorded; visual, narrative, personality, and relationship details must be copied from the canonical cast documentation."
+    },
+    "character.nik": {
+      "entity_type": "character",
+      "display_name": "Nik",
+      "property_ref": "Blue-Sea-Print-Core",
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "attributes": {},
+      "source_refs": [
+        "Blue-Sea-Print-Core PR #3 and PR #4: Fin & Nik cast continuity documentation"
+      ],
+      "notes": "Name and existence are recorded; visual, narrative, personality, and relationship details must be copied from the canonical cast documentation."
+    },
+    "character-group.tropical-adventurer-couple": {
+      "entity_type": "character_group",
+      "display_name": "Tropical Adventurer Couple",
+      "status": "MAPPING_UNRESOLVED",
+      "attributes": {},
+      "source_refs": [
+        "Family-IP-Register media asset discovery record"
+      ],
+      "notes": "Keep separate from Casual Duo until source evidence proves they are the same characters."
+    },
+    "asset.canonical-presenter-left": {
+      "entity_type": "character_asset",
+      "display_name": "character_left.png",
+      "status": "NOT_LOCATED_IN_LAST_RECORDED_SCAN",
+      "source_refs": [
+        "Family-IP-Register docs/MEDIA_ASSET_DISCOVERY.md"
+      ],
+      "notes": "Do not substitute Meiling or another character without an explicit asset match."
+    },
+    "asset.canonical-presenter-right": {
+      "entity_type": "character_asset",
+      "display_name": "character_right.png",
+      "status": "NOT_LOCATED_IN_LAST_RECORDED_SCAN",
+      "source_refs": [
+        "Family-IP-Register docs/MEDIA_ASSET_DISCOVERY.md"
+      ],
+      "notes": "Do not substitute Meiling or another character without an explicit asset match."
     }
   },
   "collections": {
-    "characters": [],
+    "characters": [
+      "character.fin",
+      "character.nik",
+      "character-group.tropical-adventurer-couple"
+    ],
     "places": [],
     "styles": [],
     "visual_systems": [],
     "audio_signatures": [],
     "content_formats": [],
-    "brand_assets": []
+    "brand_assets": [
+      "asset.canonical-presenter-left",
+      "asset.canonical-presenter-right"
+    ]
   },
   "relationships": [
-    {"from": "identity.master", "relation": "governs", "to": "persona.captain-narrator"},
-    {"from": "identity.master", "relation": "governs", "to": "persona.casual-duo"},
-    {"from": "identity.master", "relation": "governs", "to": "persona.meiling"}
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "persona.captain-narrator"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "persona.casual-duo"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "persona.meiling"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "character.fin"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "character.nik"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "character-group.tropical-adventurer-couple"
+    }
+  ],
+  "notes": [
+    "Do not equate Casual Duo with Tropical Adventurer Couple without a source-backed identity match.",
+    "Do not substitute Meiling or any other existing character for the missing canonical presenter assets."
   ]
 }
