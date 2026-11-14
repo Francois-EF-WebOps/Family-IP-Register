@@ -18,12 +18,15 @@ Canonical source: `generation/identity/registry.json`.
 
 The registry supports a master identity, personas/persona groups, characters, places, styles, visual systems, audio signatures, content formats, and reusable brand assets. It also records relationships, source references, and recovery status.
 
-Recovered partial records currently include:
+Recovered or referenced records currently include:
 - Captain Narrator — Digital Voyager;
 - Casual Duo — Everyday Adventurers;
-- Meiling — Urban Operative.
+- Meiling — Urban Operative;
+- Fin and Nik, whose cast-continuity documentation exists in Blue-Sea-Print-Core;
+- a separately tracked Tropical Adventurer Couple whose mapping to Casual Duo is unresolved;
+- canonical presenter assets character_left.png and character_right.png, not located in the last recorded asset scan.
 
-Their definitions are deliberately marked partial. The registry does not invent the missing master-brand name, individual Duo member names, locations, visual specifications, or signature details. Existing character sheets and source exports must be reconciled into the registry before those fields are treated as authoritative.
+Their definitions are deliberately marked partial or unresolved. The registry does not invent the missing master-brand name, individual Duo member names, locations, visual specifications, or signature details. Do not equate Casual Duo with the Tropical Adventurer Couple without source evidence. Do not substitute Meiling or another character for the missing canonical presenter assets. Existing character sheets and source exports must be reconciled into the registry before those fields are treated as authoritative.
 
 A job may reference registry IDs:
 
