@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "generation" / "catalog.json"
 VERSION = "0.1.0"
-TOKEN = re.compile(r"{{\\s*([a-zA-Z_][a-zA-Z0-9_.-]*)\\s*}}")
+TOKEN = re.compile(r"{{\s*([a-zA-Z_][a-zA-Z0-9_.-]*)\s*}}")
 
 class GenerationError(Exception):
     pass
@@ -99,7 +99,7 @@ def generate(job_path: Path, output_dir: Path, force: bool = False) -> list[Path
     receipt_path = output_dir / "generation-receipt.json"
     if receipt_path.exists() and not force:
         raise GenerationError(f"Refusing to overwrite {receipt_path}; pass --force")
-    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return [target for target, _, _, _ in rendered] + [receipt_path]
 
 def main() -> int:
