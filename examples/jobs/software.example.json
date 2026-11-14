@@ -1,5 +1,6 @@
 {
   "kind": "software",
+  "identity_refs": ["identity.master"],
   "source_refs": [],
   "data": {
     "project_name": "Example Tool",
