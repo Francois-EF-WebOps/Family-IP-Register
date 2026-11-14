@@ -49,7 +49,8 @@ def load_identity_context(identity_refs: list) -> tuple[dict, dict]:
     for ref in identity_refs:
         if ref not in entities:
             raise GenerationError(f"Unknown identity reference: {ref}")
-        selected[ref] = entities[ref]
+        template_key = ref.replace(".", "_").replace("-", "_")
+        selected[template_key] = entities[ref]
     return {"entities": selected}, {"registry_sha256": digest(registry_bytes), "refs": identity_refs}
 
 def safe_output(root: Path, relative: str) -> Path:
