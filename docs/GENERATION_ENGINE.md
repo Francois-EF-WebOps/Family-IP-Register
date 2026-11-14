@@ -16,12 +16,12 @@ The initial engine uses Python's standard library only. It does not call an AI m
 
 From the repository root:
 
-\x60\x60\x60bash
+```bash
 python3 scripts/generate.py --job examples/jobs/content.example.json --output-dir build/generated/content
 python3 scripts/generate.py --job examples/jobs/digital-product.example.json --output-dir build/generated/product
 python3 scripts/generate.py --job examples/jobs/software.example.json --output-dir build/generated/software
 python3 -m unittest discover -s tests
-\x60\x60\x60
+```
 
 Use `--force` only when intentionally replacing prior generated files. Outputs should normally be written under an ignored local build directory; do not commit generated drafts automatically.
 
