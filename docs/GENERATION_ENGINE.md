@@ -18,6 +18,18 @@ Canonical source: `generation/identity/registry.json`.
 
 The registry supports a master identity, personas/persona groups, characters, places, styles, visual systems, audio signatures, content formats, and reusable brand assets. It also records relationships, source references, and recovery status.
 
+### Recovery policy
+
+Use this order:
+1. Existing canonical files and records in owned repositories.
+2. Existing conversation/library exports and user-provided source material.
+3. Public web sources and open repositories for missing material.
+4. New proposals only when no suitable existing source can be recovered.
+
+Record external resources with their original URL, creator, declared license, intended use, rights caveats, and validation status. Separate reference material, reusable tools, and actual brand assets. A search result is not proof of ownership, permission, or canonical identity. Prefer permissively licensed resources, but check the license of each individual asset and its dependencies. If no trustworthy source exists, leave the item unresolved rather than inventing it.
+
+The current external resource register includes ComfyUI Prompt Iterator as a MIT-declared open-source workflow aid for repeatable prompt/view/pose batches. It is a production tool reference, not a brand character or a source of our visual identity.
+
 Recovered or referenced records currently include:
 - Captain Narrator — Digital Voyager;
 - Casual Duo — Everyday Adventurers;
