@@ -1,6 +1,6 @@
 # Generation Engine
 
-**Status:** Initial deterministic implementation; template output only.  
+**Status:** Deterministic template engine with shared identity registry; generated outputs remain drafts.  
 **Location:** This engine lives inside Family-IP-Register. Do not create a second generator repository.
 
 ## Purpose
@@ -10,7 +10,46 @@ Generate repeatable first drafts for three artifact families from one JSON job f
 - digital product briefs and sales-page drafts;
 - software starter files (README, Python entry point, unit-test starter).
 
-The initial engine uses Python's standard library only. It does not call an AI model, network service, paid API, or publishing platform. AI-assisted generation can be added later as an optional adapter, never as a required runtime dependency.
+Every generation kind can reference the same identity records. The identity layer is shared; content formats and commercial properties remain distinct.
+
+## Shared identity
+
+Canonical source: `generation/identity/registry.json`.
+
+The registry supports a master identity, personas/persona groups, characters, places, styles, visual systems, audio signatures, content formats, and reusable brand assets. It also records relationships, source references, and recovery status.
+
+Recovered partial records currently include:
+- Captain Narrator — Digital Voyager;
+- Casual Duo — Everyday Adventurers;
+- Meiling — Urban Operative.
+
+Their definitions are deliberately marked partial. The registry does not invent the missing master-brand name, individual Duo member names, locations, visual specifications, or signature details. Existing character sheets and source exports must be reconciled into the registry before those fields are treated as authoritative.
+
+A job may reference registry IDs:
+
+```json
+{
+  "kind": "content",
+  "identity_refs": ["identity.master", "persona.captain-narrator"],
+  "data": {
+    "title": "Example",
+    "audience": "Readers",
+    "purpose": "Explain",
+    "body": "Draft notes",
+    "source_notes": "Sources to verify"
+  }
+}
+```
+
+Referenced records are available to templates under `identity.entities`, for example:
+
+```
+{{identity.entities.persona.captain-narrator.display_name}}
+```
+
+Unknown IDs and missing template values fail closed. The receipt records the exact identity IDs and SHA-256 hash of the registry used. This makes later identity changes traceable across all generated formats.
+
+Identity references are optional during the transition. Do not claim a deliverable is brand-consistent merely because it was generated; only use identity fields that have been recovered and validated.
 
 ## Run
 
@@ -30,13 +69,14 @@ Use `--force` only when intentionally replacing prior generated files. Outputs s
 Each job is JSON with:
 - `kind`: `content`, `digital_product`, or `software`;
 - `data`: values substituted into the selected templates;
+- `identity_refs`: optional IDs from the shared identity registry;
 - `source_refs`: optional source identifiers or URLs to retain in the receipt.
 
 Template tokens use `{{key}}` and dotted paths such as `{{project.name}}`. Missing values fail closed. Template text is treated as data; no shell, Python, or expression evaluation occurs.
 
 ## Provenance and controls
 
-Every run writes `generation-receipt.json` with the job hash, template hashes, output hashes, generator version, timestamp, source references, and review status. This is traceability, not proof that sources are accurate or that rights are cleared.
+Every run writes `generation-receipt.json` with the job hash, template hashes, output hashes, generator version, timestamp, source references, identity registry hash and referenced identity IDs, and review status. This is traceability, not proof that sources are accurate or that rights are cleared.
 
 - Output paths cannot be absolute or traverse outside the output directory.
 - Existing outputs are not overwritten unless `--force` is supplied.
