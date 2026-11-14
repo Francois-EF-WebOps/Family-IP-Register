@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "registry_status": "PARTIAL_SOURCE_RECONCILIATION",
+  "purpose": "Shared identity source for every generation kind. Preserve established identities; do not invent missing brand, character, place, or style attributes.",
+  "entities": {
+    "identity.master": {
+      "entity_type": "master_identity",
+      "display_name": "",
+      "status": "SOURCE_REQUIRED",
+      "description": "",
+      "source_refs": [],
+      "notes": "The master identity architecture is agreed, but its canonical name and detailed identity rules must be recovered from existing source assets before branded generation can rely on them."
+    },
+    "persona.captain-narrator": {
+      "entity_type": "persona",
+      "display_name": "Captain Narrator — Digital Voyager",
+      "status": "RECOVERED_PARTIAL",
+      "description": "Male explorer; warm, witty mentor-explorer.",
+      "attributes": {
+        "role": "explorer and narrator",
+        "voice": ["warm", "witty", "mentor-like"],
+        "visual_rules": [],
+        "movement_rules": [],
+        "signature_phrases": []
+      },
+      "source_refs": ["xanat export: chat (3).html", "xanat export: chat (4).html"]
+    },
+    "persona.casual-duo": {
+      "entity_type": "persona_group",
+      "display_name": "Casual Duo — Everyday Adventurers",
+      "status": "RECOVERED_PARTIAL",
+      "description": "A woman and a man with distinct individual visuals, clothing, expressions, and personalities.",
+      "attributes": {
+        "members": [],
+        "visual_rules": [],
+        "clothing_rules": [],
+        "expression_rules": [],
+        "personality_rules": []
+      },
+      "source_refs": ["xanat export: chat (3).html", "xanat export: chat (4).html"],
+      "notes": "Individual character names and full character sheets must be recovered; do not invent them."
+    },
+    "persona.meiling": {
+      "entity_type": "persona",
+      "display_name": "Meiling — Urban Operative",
+      "status": "RECOVERED_PARTIAL",
+      "description": "Character with an existing visual identity, personality, movement rules, and character sheet.",
+      "attributes": {
+        "visual_rules": [],
+        "personality_rules": [],
+        "movement_rules": [],
+        "character_sheet_ref": ""
+      },
+      "source_refs": ["xanat export: chat (3).html", "xanat export: chat (4).html"]
+    }
+  },
+  "collections": {
+    "characters": [],
+    "places": [],
+    "styles": [],
+    "visual_systems": [],
+    "audio_signatures": [],
+    "content_formats": [],
+    "brand_assets": []
+  },
+  "relationships": [
+    {"from": "identity.master", "relation": "governs", "to": "persona.captain-narrator"},
+    {"from": "identity.master", "relation": "governs", "to": "persona.casual-duo"},
+    {"from": "identity.master", "relation": "governs", "to": "persona.meiling"}
+  ]
+}
