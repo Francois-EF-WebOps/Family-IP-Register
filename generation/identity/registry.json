@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "registry_status": "PARTIAL_SOURCE_RECONCILIATION",
+  "purpose": "Shared identity source for every generation kind. Preserve established identities; do not invent missing brand, character, place, or style attributes.",
+  "entities": {
+    "identity.master": {
+      "entity_type": "master_identity",
+      "display_name": "",
+      "status": "SOURCE_REQUIRED",
+      "description": "",
+      "source_refs": [],
+      "notes": "The master identity architecture is agreed, but its canonical name and detailed identity rules must be recovered from existing source assets before branded generation can rely on them."
+    },
+    "persona.captain-narrator": {
+      "entity_type": "persona",
+      "display_name": "Captain Narrator — Digital Voyager",
+      "status": "RECOVERED_PARTIAL",
+      "description": "Male explorer; warm, witty mentor-explorer.",
+      "attributes": {
+        "role": "explorer and narrator",
+        "voice": [
+          "warm",
+          "witty",
+          "mentor-like"
+        ],
+        "visual_rules": [],
+        "movement_rules": [],
+        "signature_phrases": []
+      },
+      "source_refs": [
+        "xanat export: chat (3).html",
+        "xanat export: chat (4).html"
+      ]
+    },
+    "persona.casual-duo": {
+      "entity_type": "persona_group",
+      "display_name": "Casual Duo — Everyday Adventurers",
+      "status": "RECOVERED_PARTIAL",
+      "description": "A woman and a man with distinct individual visuals, clothing, expressions, and personalities.",
+      "attributes": {
+        "members": [],
+        "visual_rules": [],
+        "clothing_rules": [],
+        "expression_rules": [],
+        "personality_rules": []
+      },
+      "source_refs": [
+        "xanat export: chat (3).html",
+        "xanat export: chat (4).html"
+      ],
+      "notes": "Individual character names and full character sheets must be recovered; do not invent them."
+    },
+    "persona.meiling": {
+      "entity_type": "persona",
+      "display_name": "Meiling — Urban Operative",
+      "status": "RECOVERED_PARTIAL",
+      "description": "Character with an existing visual identity, personality, movement rules, and character sheet.",
+      "attributes": {
+        "visual_rules": [],
+        "personality_rules": [],
+        "movement_rules": [],
+        "character_sheet_ref": ""
+      },
+      "source_refs": [
+        "xanat export: chat (3).html",
+        "xanat export: chat (4).html"
+      ]
+    },
+    "character.fin": {
+      "entity_type": "character",
+      "display_name": "Fin",
+      "property_ref": "Blue-Sea-Print-Core",
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "attributes": {},
+      "source_refs": [
+        "Blue-Sea-Print-Core PR #3 and PR #4: Fin & Nik cast continuity documentation"
+      ],
+      "notes": "Name and existence are recorded; visual, narrative, personality, and relationship details must be copied from the canonical cast documentation."
+    },
+    "character.nik": {
+      "entity_type": "character",
+      "display_name": "Nik",
+      "property_ref": "Blue-Sea-Print-Core",
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "attributes": {},
+      "source_refs": [
+        "Blue-Sea-Print-Core PR #3 and PR #4: Fin & Nik cast continuity documentation"
+      ],
+      "notes": "Name and existence are recorded; visual, narrative, personality, and relationship details must be copied from the canonical cast documentation."
+    },
+    "character-group.tropical-adventurer-couple": {
+      "entity_type": "character_group",
+      "display_name": "Tropical Adventurer Couple",
+      "status": "MAPPING_UNRESOLVED",
+      "attributes": {},
+      "source_refs": [
+        "Family-IP-Register media asset discovery record"
+      ],
+      "notes": "Keep separate from Casual Duo until source evidence proves they are the same characters."
+    },
+    "asset.canonical-presenter-left": {
+      "entity_type": "character_asset",
+      "display_name": "character_left.png",
+      "status": "NOT_LOCATED_IN_LAST_RECORDED_SCAN",
+      "source_refs": [
+        "Family-IP-Register docs/MEDIA_ASSET_DISCOVERY.md"
+      ],
+      "notes": "Do not substitute Meiling or another character without an explicit asset match."
+    },
+    "asset.canonical-presenter-right": {
+      "entity_type": "character_asset",
+      "display_name": "character_right.png",
+      "status": "NOT_LOCATED_IN_LAST_RECORDED_SCAN",
+      "source_refs": [
+        "Family-IP-Register docs/MEDIA_ASSET_DISCOVERY.md"
+      ],
+      "notes": "Do not substitute Meiling or another character without an explicit asset match."
+    }
+  },
+  "collections": {
+    "characters": [
+      "character.fin",
+      "character.nik",
+      "character-group.tropical-adventurer-couple"
+    ],
+    "places": [],
+    "styles": [],
+    "visual_systems": [],
+    "audio_signatures": [],
+    "content_formats": [],
+    "brand_assets": [
+      "asset.canonical-presenter-left",
+      "asset.canonical-presenter-right"
+    ]
+  },
+  "relationships": [
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "persona.captain-narrator"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "persona.casual-duo"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "persona.meiling"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "character.fin"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "character.nik"
+    },
+    {
+      "from": "identity.master",
+      "relation": "governs",
+      "to": "character-group.tropical-adventurer-couple"
+    }
+  ],
+  "notes": [
+    "Do not equate Casual Duo with Tropical Adventurer Couple without a source-backed identity match.",
+    "Do not substitute Meiling or any other existing character for the missing canonical presenter assets."
+  ],
+  "external_resources": [
+    {
+      "id": "tool.comfyui-prompt-iterator",
+      "resource_type": "open_source_generation_tool",
+      "title": "ComfyUI Prompt Iterator",
+      "url": "https://github.com/BizaNator/ComfyUI_PromptIterator",
+      "author": "BiloxiStudios Inc - BizaNator",
+      "license": "MIT (as declared by repository)",
+      "purpose": "Batch iteration of character prompts, views, poses, filenames, and seeds to improve repeatability of visual asset generation.",
+      "relevance": "Supports production consistency; it is not a canonical brand identity, character sheet, or visual asset.",
+      "status": "EXTERNAL_TOOL_REFERENCE_REVIEWED",
+      "source_refs": [
+        "turn289749search0"
+      ],
+      "rights_note": "Retain attribution and license notice if code is reused; separately verify any model, checkpoint, font, image, or other assets used in the workflow."
+    }
+  ]
+}

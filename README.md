@@ -24,6 +24,10 @@ This repository is a **record-keeping and governance index**. It is not a declar
 - [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
 - [Media and Character Asset Discovery](docs/MEDIA_ASSET_DISCOVERY.md) — cross-repository discovery of existing personas, presenter characters, voice references, and media assets; verified leads are separated from unlocated files.
 
+## Generation engine
+
+The repository includes a deterministic, local-first generator for editorial content, digital-product drafts, and software starter artifacts. See [Generation Engine](docs/GENERATION_ENGINE.md). Generated outputs remain drafts and require human review.
+
 ## Status vocabulary
 
 - **Unreviewed** — identified, not yet examined.
