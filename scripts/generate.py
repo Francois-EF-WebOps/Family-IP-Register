@@ -11,8 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "generation" / "catalog.json"
-VERSION = "0.1.0"
-TOKEN = re.compile(r"{{\s*([a-zA-Z_][a-zA-Z0-9_.-]*)\s*}}")
+IDENTITY_REGISTRY = ROOT / "generation" / "identity" / "registry.json"
+VERSION = "0.2.0"
+TOKEN = re.compile(r"{{\\s*([a-zA-Z_][a-zA-Z0-9_.-]*)\\s*}}")
 
 class GenerationError(Exception):
     pass
@@ -28,10 +29,28 @@ def value_at(data: dict, key: str):
         value = value[part]
     if isinstance(value, (dict, list)):
         return json.dumps(value, ensure_ascii=False, indent=2)
+    if value is None or value == "":
+        raise GenerationError(f"Empty template value: {key}")
     return str(value)
 
 def render(template: str, data: dict) -> str:
     return TOKEN.sub(lambda m: value_at(data, m.group(1)), template)
+
+def load_identity_context(identity_refs: list) -> tuple[dict, dict]:
+    if not isinstance(identity_refs, list) or not all(isinstance(x, str) for x in identity_refs):
+        raise GenerationError("job.identity_refs must be an array of registry IDs")
+    try:
+        registry_bytes = IDENTITY_REGISTRY.read_bytes()
+        registry = json.loads(registry_bytes)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise GenerationError(f"Cannot load identity registry: {exc}") from exc
+    entities = registry.get("entities", {})
+    selected = {}
+    for ref in identity_refs:
+        if ref not in entities:
+            raise GenerationError(f"Unknown identity reference: {ref}")
+        selected[ref] = entities[ref]
+    return {"entities": selected}, {"registry_sha256": digest(registry_bytes), "refs": identity_refs}
 
 def safe_output(root: Path, relative: str) -> Path:
     rel = Path(relative)
@@ -56,6 +75,9 @@ def generate(job_path: Path, output_dir: Path, force: bool = False) -> list[Path
     data = job.get("data", {})
     if not isinstance(data, dict):
         raise GenerationError("job.data must be a JSON object")
+    identity_context, identity_receipt = load_identity_context(job.get("identity_refs", []))
+    render_data = dict(data)
+    render_data["identity"] = identity_context
     artifacts = spec.get("artifacts", [])
     if not artifacts:
         raise GenerationError(f"No artifacts configured for kind: {kind}")
@@ -66,20 +88,19 @@ def generate(job_path: Path, output_dir: Path, force: bool = False) -> list[Path
         if ROOT.resolve() not in template_path.parents or not template_path.is_file():
             raise GenerationError(f"Invalid or missing template: {artifact['template']}")
         template_bytes = template_path.read_bytes()
-        body = render(template_bytes.decode("utf-8"), data)
+        body = render(template_bytes.decode("utf-8"), render_data)
         target = safe_output(output_dir, artifact["output"])
         if target.exists() and not force:
             raise GenerationError(f"Refusing to overwrite {target}; pass --force")
         rendered.append((target, body.encode("utf-8"), artifact, digest(template_bytes)))
 
-    # Validate every output before writing any of them.
     for target, _, _, _ in rendered:
         target.parent.mkdir(parents=True, exist_ok=True)
     for target, content, _, _ in rendered:
         target.write_bytes(content)
 
     receipt = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generator": "Family-IP-Register deterministic generator",
         "generator_version": VERSION,
         "kind": kind,
@@ -87,6 +108,7 @@ def generate(job_path: Path, output_dir: Path, force: bool = False) -> list[Path
         "job_sha256": digest(job_bytes),
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "source_refs": job.get("source_refs", []),
+        "identity": identity_receipt,
         "artifacts": [
             {"path": str(target.relative_to(output_dir.resolve())),
              "sha256": digest(content), "template": artifact["template"],
@@ -99,7 +121,7 @@ def generate(job_path: Path, output_dir: Path, force: bool = False) -> list[Path
     receipt_path = output_dir / "generation-receipt.json"
     if receipt_path.exists() and not force:
         raise GenerationError(f"Refusing to overwrite {receipt_path}; pass --force")
-    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
     return [target for target, _, _, _ in rendered] + [receipt_path]
 
 def main() -> int:
