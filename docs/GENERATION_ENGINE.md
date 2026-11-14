@@ -44,7 +44,7 @@ A job may reference registry IDs:
 Referenced records are available to templates under `identity.entities`, for example:
 
 ```
-{{identity.entities.persona.captain-narrator.display_name}}
+{{identity.entities.persona_captain_narrator.display_name}}
 ```
 
 Unknown IDs and missing template values fail closed. The receipt records the exact identity IDs and SHA-256 hash of the registry used. This makes later identity changes traceable across all generated formats.
