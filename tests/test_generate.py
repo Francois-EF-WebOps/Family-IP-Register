@@ -20,7 +20,7 @@ class GeneratorTests(unittest.TestCase):
 
     def test_identity_reference_is_available_to_templates(self):
         identity, receipt = load_identity_context(["persona.captain-narrator"])
-        rendered = render("{{identity.entities.persona.captain-narrator.display_name}}", {"identity": identity})
+        rendered = render("{{identity.entities.persona_captain_narrator.display_name}}", {"identity": identity})
         self.assertEqual(rendered, "Captain Narrator — Digital Voyager")
         self.assertEqual(receipt["refs"], ["persona.captain-narrator"])
         self.assertEqual(len(receipt["registry_sha256"]), 64)
