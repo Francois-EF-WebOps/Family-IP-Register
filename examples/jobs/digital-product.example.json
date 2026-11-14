@@ -1,0 +1,14 @@
+{
+  "kind": "digital_product",
+  "source_refs": [],
+  "data": {
+    "product_name": "Example digital product",
+    "target_user": "Describe a specific user group",
+    "problem": "Describe the problem supported by evidence",
+    "outcome": "Describe the proposed outcome without guarantees",
+    "deliverables": "- Item one\n- Item two",
+    "source_assets": "List asset IDs and rights status",
+    "headline": "A clear, evidence-based product headline",
+    "call_to_action": "Review the offer"
+  }
+}
