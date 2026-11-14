@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "description": "Deterministic templates for content, digital products, and software starter artifacts.",
+  "kinds": {
+    "content": {
+      "description": "Editorial content draft",
+      "artifacts": [
+        {"template": "generation/templates/content.md.tmpl", "output": "content.md"}
+      ]
+    },
+    "digital_product": {
+      "description": "Digital product brief and sales-page draft",
+      "artifacts": [
+        {"template": "generation/templates/product-brief.md.tmpl", "output": "product-brief.md"},
+        {"template": "generation/templates/sales-page.md.tmpl", "output": "sales-page-draft.md"}
+      ]
+    },
+    "software": {
+      "description": "Minimal Python software starter",
+      "artifacts": [
+        {"template": "generation/templates/software-readme.md.tmpl", "output": "README.md"},
+        {"template": "generation/templates/software-main.py.tmpl", "output": "src/main.py"},
+        {"template": "generation/templates/software-test.py.tmpl", "output": "tests/test_main.py"}
+      ]
+    }
+  }
+}
