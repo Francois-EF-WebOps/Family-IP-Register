@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "product_id": "MKC-HIST-01",
+  "title": "Island History Evidence Workbook",
+  "version": "0.1-preview",
+  "source_repository": "Francois-EF-WebOps/mascarene-knowledge-commons (private)",
+  "source_path": "sellables/ISLAND-HISTORY-EVIDENCE-WORKBOOK/",
+  "public_preview_path": "previews/island-history-evidence-workbook/",
+  "delivery": "email_or_private_dropbox_after_payment_confirmation",
+  "price_status": "not_finalized",
+  "commercial_rights_review": "pending_owner_release_check",
+  "print_qa": "pending",
+  "independent_review": "not_completed",
+  "classroom_pilot": "not_completed",
+  "demand_validation": "not_tested",
+  "public_assets": [
+    "index.html",
+    "release-manifest.json"
+  ],
+  "excluded_from_publication": [
+    "complete_paid_pdf",
+    "editable_source_html",
+    "buyer_details",
+    "payment_details"
+  ],
+  "release_status": "PREVIEW_DRAFT_REQUIRES_OWNER_REVIEW"
+}

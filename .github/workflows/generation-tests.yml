@@ -5,12 +5,14 @@ on:
     paths:
       - 'scripts/generate.py'
       - 'generation/**'
+      - 'examples/jobs/**'
       - 'tests/test_generate.py'
       - '.github/workflows/generation-tests.yml'
   pull_request:
     paths:
       - 'scripts/generate.py'
       - 'generation/**'
+      - 'examples/jobs/**'
       - 'tests/test_generate.py'
       - '.github/workflows/generation-tests.yml'
 
@@ -29,5 +31,6 @@ jobs:
       - run: |
           python scripts/generate.py --job examples/jobs/content.example.json --output-dir /tmp/fip-generation-content
           python scripts/generate.py --job examples/jobs/digital-product.example.json --output-dir /tmp/fip-generation-product
+          python scripts/generate.py --job examples/jobs/island-history-evidence-workbook.json --output-dir /tmp/fip-generation-island-history-workbook
           python scripts/generate.py --job examples/jobs/software.example.json --output-dir /tmp/fip-generation-software
           python -m py_compile /tmp/fip-generation-software/src/main.py /tmp/fip-generation-software/tests/test_main.py
