@@ -1,0 +1,10 @@
+{
+  "kind": "software",
+  "identity_refs": ["identity.master"],
+  "source_refs": [],
+  "data": {
+    "project_name": "Example Tool",
+    "description": "A short description of the tool.",
+    "scope": "Define included behaviour and explicit non-goals."
+  }
+}

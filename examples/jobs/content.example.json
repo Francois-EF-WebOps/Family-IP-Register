@@ -1,0 +1,12 @@
+{
+  "kind": "content",
+  "identity_refs": ["identity.master", "persona.captain-narrator"],
+  "source_refs": ["REPLACE_WITH_VERIFIABLE_SOURCE_REFERENCE"],
+  "data": {
+    "title": "Example title",
+    "audience": "Define the intended audience",
+    "purpose": "State the intended reader outcome",
+    "body": "Replace with sourced notes. Do not treat generated prose as verified fact.",
+    "source_notes": "List source IDs, URLs, dates, rights, and unresolved limitations."
+  }
+}
