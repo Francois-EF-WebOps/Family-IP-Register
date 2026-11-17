@@ -61,3 +61,16 @@ For each discovered asset, record:
 ## Next action
 
 Recover the standalone Meiling sheet and its reference assets from the original source, identify which of the located characters were intended for the fast explainer format, and map only those approved characters to the recent man/woman cutouts. Then build a small reusable 2D/3D preview. No new character design is needed until that source comparison is complete.
+
+
+## Fin & Nik — fictional saga characters and opening storyboard (2026-11-06)
+
+| Lead | Exact source | Verified | Status |
+|---|---|---|---|
+| Fin | User-supplied character profile in the current creative conversation; working record in [ai-music-provenance/projects/fin-and-nik](https://github.com/Francois-EF-WebOps/ai-music-provenance/tree/feat/fin-nik-album-01-starter/projects/fin-and-nik) | Fictional four-year-old tropical-island boy; short dark coily hair, deep brown skin, freckles, white sleeveless linen tunic, light shorts, barefoot, wooden fishing rod. | Character description located; original standalone reference-sheet file not yet located in GitHub. |
+| Nik | User-supplied character profile in the current creative conversation; working record in [ai-music-provenance/projects/fin-and-nik](https://github.com/Francois-EF-WebOps/ai-music-provenance/tree/feat/fin-nik-album-01-starter/projects/fin-and-nik) | Fictional eight-year-old island girl; long dark-brown hair, tan skin, freckles, woven beige tunic with blue embroidery, fruit-and-flower basket, barefoot. | Character description located; original standalone reference-sheet file not yet located in GitHub. |
+| Fin & Nik Album 01 opening | [Track 01 storyboard](https://github.com/Francois-EF-WebOps/ai-music-provenance/blob/feat/fin-nik-album-01-starter/projects/fin-and-nik/album-01/track-01/storyboard.md) | Six-panel opening keeps Fin alone; Nik's first appearance is reserved for Track 09. An earlier Nik-in-opening / golden-shell variant conflicts with this continuity and is superseded. | Storyboard draft recorded; user approval pending. |
+| Track 01 lyrics | [ZERO draft](https://github.com/Francois-EF-WebOps/ai-music-provenance/blob/feat/fin-nik-album-01-starter/projects/fin-and-nik/album-01/track-01/lyrics-draft.md) | A new provisional assistant-written draft is recorded. The earlier approved/original lyrics have not yet been recovered verbatim. | Draft only; must not be misrepresented as recovered or approved original. |
+| Six-panel generated storyboard image | ChatGPT image-generation output, 2026-11-06; described in the [production record](https://github.com/Francois-EF-WebOps/ai-music-provenance/blob/feat/fin-nik-album-01-starter/projects/fin-and-nik/album-01/track-01/production-record.md) | A six-panel image was generated in the conversation. It has not yet been committed to GitHub or reviewed against the canonical Fin reference sheet. | Generated lead; binary asset and approval status pending. |
+
+**Guardrails:** These are fictional character descriptions, not records about real children. Do not add real-world family details. Do not infer ownership or commercial rights from the descriptions or from AI generation. Preserve original character sheets and recovered lyrics separately; do not overwrite them with drafts.
