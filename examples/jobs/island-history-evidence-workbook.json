@@ -1,0 +1,18 @@
+{
+  "kind": "digital_product",
+  "identity_refs": [],
+  "source_refs": [
+    "MKC private source: sellables/ISLAND-HISTORY-EVIDENCE-WORKBOOK/README.md",
+    "MKC private source: sellables/ISLAND-HISTORY-EVIDENCE-WORKBOOK/island-history-evidence-workbook.html"
+  ],
+  "data": {
+    "product_name": "Island History Evidence Workbook",
+    "target_user": "Teachers, students, local-history groups and independent researchers who need a practical structure for documenting historical sources and evaluating claims.",
+    "problem": "Historical research notes can blur the distinction between a source, a claim, supporting evidence and interpretation; source locations and uncertainty can also be lost.",
+    "outcome": "A structured four-page A4 worksheet for framing a question, recording a source, auditing a claim and writing a careful conclusion. It supports research practice but does not guarantee educational outcomes.",
+    "deliverables": "- Four-page A4 printable PDF\\n- Research question and scope worksheet\\n- Source record\\n- Claim and evidence audit\\n- Synthesis and review checklist",
+    "source_assets": "MKC-HIST-01; original workbook HTML in private MKC repository; commercial release and print QA remain pending.",
+    "headline": "A practical four-page workbook for asking better island-history questions and showing how you know.",
+    "call_to_action": "Ask for the current price and delivery options. Direct payment and private delivery only; no automated checkout."
+  }
+}
