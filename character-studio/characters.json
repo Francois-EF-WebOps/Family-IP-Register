@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "characters": {
+    "fin": {
+      "character_id": "character.fin",
+      "name": "Fin",
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "identity": {
+        "age_years": 4,
+        "gender_presentation": "boy",
+        "skin_description": "deep brown skin",
+        "hair_description": "short dark coily hair",
+        "eye_description": "large curious brown eyes",
+        "distinctive_features": ["light freckles"],
+        "body_proportions": null
+      },
+      "appearance": {
+        "documented_garment": "white sleeveless linen tunic",
+        "garment_colour": "#f4f0df",
+        "garment_style": "tunic",
+        "lower_garment": "light knee-length shorts",
+        "footwear": "barefoot",
+        "accessory": "simple wooden fishing rod",
+        "show_accessory": true
+      },
+      "personality": ["curious"],
+      "provenance": {
+        "source_refs": ["Family-IP-Register/assets/fin-and-nik/README.md"],
+        "source_note": "Facts transcribed from the repository's provisional Fin & Nik character record.",
+        "licensing_status": "NOT_ASSESSED",
+        "review_status": "DRAFT_REQUIRES_HUMAN_REVIEW"
+      }
+    },
+    "nik": {
+      "character_id": "character.nik",
+      "name": "Nik",
+      "status": "SOURCE_RECONCILIATION_REQUIRED",
+      "identity": {
+        "age_years": 8,
+        "gender_presentation": "girl; slightly feminine appearance",
+        "skin_description": "sun-kissed tan skin",
+        "hair_description": "long dark-brown hair tied loosely back",
+        "eye_description": "warm brown eyes",
+        "distinctive_features": ["freckles"],
+        "body_proportions": null
+      },
+      "appearance": {
+        "documented_garment": "beige woven tunic with blue wave/leaf embroidery",
+        "garment_colour": "#d9c5a0",
+        "garment_style": "tunic",
+        "lower_garment": null,
+        "footwear": "barefoot",
+        "accessory": "woven basket with tropical fruits and flowers",
+        "show_accessory": true
+      },
+      "personality": ["experienced guide"],
+      "provenance": {
+        "source_refs": ["Family-IP-Register/assets/fin-and-nik/README.md"],
+        "source_note": "Facts transcribed from the repository's provisional Fin & Nik character record.",
+        "licensing_status": "NOT_ASSESSED",
+        "review_status": "DRAFT_REQUIRES_HUMAN_REVIEW"
+      }
+    }
+  }
+}
