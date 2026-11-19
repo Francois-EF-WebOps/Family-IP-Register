@@ -28,6 +28,8 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 The repository includes a deterministic, local-first generator for editorial content, digital-product drafts, and software starter artifacts. See [Generation Engine](docs/GENERATION_ENGINE.md). Generated outputs remain drafts and require human review.
 
+[Universal Character Studio](character-studio/README.md) is the first mobile-first, local-only character editor built on the shared identity and provenance foundations. The app uses a deterministic SVG placeholder renderer; AI and 3D are not required.
+
 ## Status vocabulary
 
 - **Unreviewed** — identified, not yet examined.
