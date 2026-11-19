@@ -55,3 +55,12 @@ The fixture records remain marked `SOURCE_RECONCILIATION_REQUIRED`. This tool do
 2. Reconcile exact canonical character-sheet references and review fixture fields against them.
 3. Add expressions and pose controls only after source-backed anchor definitions exist.
 4. Validate real buyer demand with one paid character-sheet pilot before expanding into 3D or subscriptions.
+
+
+## Open-entry intake increment
+
+The open-entry workspace accepts prompt/script text and multiple local files (images, JSON, glTF, GLB, TXT, Markdown) in one session. Users can assign a role to each source and export a versioned project manifest. Images and text receive an immediate local preview; JSON/glTF syntax is parsed; original files remain downloadable from the current browser session.
+
+**Honest current boundary:** GLB/glTF files are recognised and preserved, but interactive 3D rendering is not yet integrated. This increment does not perform AI interpretation or generation, does not upload files, does not persist binary assets after the browser session, and does not embed binary files in the project manifest. Existing SVG/JSON fixture exports remain available. Cloud accounts, Google/Microsoft connections, cloud project persistence and advertising are not implemented.
+
+A detailed independent product and delivery review brief for Claude is maintained at `docs/product/CLAUDE_PRODUCT_REVIEW_BRIEF.md`.
