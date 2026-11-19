@@ -31,6 +31,10 @@ Then open `http://localhost:8000/character-studio/`. No build step, package mana
 - Local saves use browser localStorage and do not sync between devices.
 - JSON exports preserve source references, licensing status and review state.
 
+## Resume & complete
+
+The workflow panel lets a user reopen any defined stage, record missing details, and classify them as `unknown`, `incomplete`, `conflict`, or `verified`. Each stage can be marked `not_started`, `in_progress`, `blocked`, or `complete`; a stage with unresolved missing details cannot be marked complete. Progress is stored separately per character in browser localStorage and can be exported as a standalone workflow JSON record. The workflow model and JSON Schema are reusable outside Character Studio. Local browser storage does not sync across devices; export the workflow JSON to carry progress elsewhere.
+
 ## Limitations
 
 This first release is a procedural SVG editor, not an AI image generator, photorealistic character-consistency system, 3D modeller, animation tool, or collaborative service. The SVG uses simplified generic shapes; skin/hair drawing values are illustrative render choices, not a full colour specification or source-approved palette. Nik's embroidery and Fin's documented lower-garment details are not yet reproduced faithfully in the renderer.
