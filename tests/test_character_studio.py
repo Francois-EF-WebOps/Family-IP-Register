@@ -7,6 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = json.loads((ROOT / "character-studio" / "characters.json").read_text(encoding="utf-8"))
 SCHEMA = json.loads((ROOT / "character-studio" / "schema.json").read_text(encoding="utf-8"))
 SCRIPT = (ROOT / "character-studio" / "studio.js").read_text(encoding="utf-8")
+WORKFLOW_SCHEMA = json.loads((ROOT / "character-studio" / "workflow.schema.json").read_text(encoding="utf-8"))
+WORKFLOW_SCRIPT = (ROOT / "character-studio" / "workflow.js").read_text(encoding="utf-8")
 
 
 class CharacterStudioFixtureTests(unittest.TestCase):
@@ -50,6 +52,27 @@ class CharacterStudioFixtureTests(unittest.TestCase):
         self.assertIn('exported.provenance.exported_at', SCRIPT)
         self.assertIn('exported.provenance.review_status = "DRAFT_REQUIRES_HUMAN_REVIEW"', SCRIPT)
         self.assertIn('download(current.character_id.replaceAll(".","-")+".svg"', SCRIPT)
+
+    def test_resumable_workflow_model_distinguishes_missing_states_and_stage_status(self):
+        self.assertEqual(WORKFLOW_SCHEMA["properties"]["workflow_version"]["const"], 1)
+        stage = WORKFLOW_SCHEMA["properties"]["stages"]["items"]
+        self.assertEqual(set(stage["properties"]["status"]["enum"]), {"not_started", "in_progress", "blocked", "complete"})
+        missing = stage["properties"]["missing"]["items"]["properties"]["state"]["enum"]
+        self.assertEqual(set(missing), {"unknown", "incomplete", "conflict", "verified"})
+        self.assertIn("function validate(state)", WORKFLOW_SCRIPT)
+        self.assertIn("function setCurrentStage(state, stageId)", WORKFLOW_SCRIPT)
+        self.assertIn("function updateMissing(state, stageId, entries)", WORKFLOW_SCRIPT)
+
+    def test_workflow_can_resume_and_export_without_changing_character_identity(self):
+        html = (ROOT / "character-studio" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('id="workflow-stage"', html)
+        self.assertIn('id="workflow-status"', html)
+        self.assertIn('id="missing-fields"', html)
+        self.assertIn('id="export-workflow"', html)
+        self.assertIn("family-ip-character-workflow-v1", SCRIPT)
+        self.assertIn("window.CharacterWorkflow.create", SCRIPT)
+        self.assertIn("window.CharacterWorkflow.setCurrentStage", SCRIPT)
+        self.assertIn("window.CharacterWorkflow.updateMissing", SCRIPT)
 
     def test_html_has_accessible_mobile_editor_controls(self):
         html = (ROOT / "character-studio" / "index.html").read_text(encoding="utf-8")
