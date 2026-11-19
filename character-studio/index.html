@@ -77,6 +77,21 @@
           </div>
           <p id="message" class="message" aria-live="polite">Edits stay in this browser until exported or saved.</p>
         </section>
+        <section class="workflow" aria-labelledby="workflow-heading">
+          <div class="section-title"><div><p class="eyebrow">RESUME &amp; COMPLETE</p><h2 id="workflow-heading">Workflow progress</h2></div><span class="edit">Resumable</span></div>
+          <p id="workflow-summary" class="muted" aria-live="polite">Loading saved progress…</p>
+          <div class="field"><label for="workflow-stage">Resume at any stage</label>
+            <select id="workflow-stage">
+              <option value="identity">Identity</option><option value="appearance">Appearance</option><option value="proportions">Body proportions</option><option value="reference-sheet">Reference sheet</option><option value="review">Source &amp; rights review</option><option value="export">Export</option>
+            </select>
+          </div>
+          <div class="field"><label for="missing-state">Missing information state</label>
+            <select id="missing-state"><option value="unknown">Unknown</option><option value="incomplete">Incomplete</option><option value="conflict">Conflict</option><option value="verified">Verified</option></select>
+          </div>
+          <div class="field"><label for="missing-fields">Missing details (one per line)</label><textarea id="missing-fields" rows="3" placeholder="Body proportions&#10;Canonical front-view reference"></textarea></div>
+          <div class="button-row"><button id="save-workflow" class="primary" type="button">Save progress</button><button id="export-workflow" type="button">Export progress JSON</button></div>
+          <p class="muted small">Progress is saved separately for each character on this device. Unknown details remain unknown; existing character data is not overwritten.</p>
+        </section>
       </div>
     </section>
     <section class="provenance">
@@ -87,6 +102,7 @@
     </section>
   </main>
   <footer>Universal Character Studio · SVG renderer · offline-first · no AI API</footer>
+  <script src="./workflow.js" defer></script>
   <script src="./studio.js" defer></script>
 </body>
 </html>
