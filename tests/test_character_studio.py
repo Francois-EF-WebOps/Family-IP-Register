@@ -42,6 +42,11 @@ class CharacterStudioFixtureTests(unittest.TestCase):
         self.assertNotRegex(SCRIPT, r'current\.identity\.[A-Za-z_]+\s*=')
         self.assertIn('current.identity = JSON.parse(originalIdentity)', SCRIPT)
 
+    def test_local_appearance_saves_are_isolated_per_character(self):
+        self.assertIn('const storageKeyFor = (characterId) => STORAGE_KEY + ":" + characterId', SCRIPT)
+        self.assertIn('localStorage.setItem(storageKeyFor(current.character_id), JSON.stringify(current))', SCRIPT)
+        self.assertIn('localStorage.getItem(storageKeyFor(selectedFixture.character_id))', SCRIPT)
+
     def test_svg_renderer_is_deterministic_function_of_character_data(self):
         self.assertIn("function renderSvg(character)", SCRIPT)
         self.assertIn("return '<svg", SCRIPT)
