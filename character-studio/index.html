@@ -19,6 +19,21 @@
       <p class="lede">Keep a character's documented identity separate from changeable styling. This first renderer is deliberately stylised and procedural.</p>
     </section>
 
+    <section class="intake-panel" aria-labelledby="intake-heading">
+      <div class="intake-heading">
+        <div><p class="eyebrow">OPEN-ENTRY WORKSPACE</p><h2 id="intake-heading">Bring what you have. Start anywhere.</h2>
+          <p class="muted">Add a prompt, script, image, JSON file or 3D asset. Combine sources in one session and assign each a role.</p></div>
+        <span id="source-count" class="edit">0 sources</span>
+      </div>
+      <div class="field"><label for="project-title">Project name</label><input id="project-title" type="text" maxlength="120" value="Untitled creative project" placeholder="Name this project"></div>
+      <div class="field"><label for="prompt-input">Prompt or script</label><textarea id="prompt-input" rows="4" placeholder="Describe a character, paste a scene, or add creative direction…"></textarea>
+        <div class="button-row"><button id="add-prompt" class="primary" type="button">Add as prompt</button><button id="add-script" type="button">Add as script</button></div></div>
+      <div class="field"><label for="source-files">Add files (multiple allowed)</label><input id="source-files" type="file" multiple accept="image/*,.json,.gltf,.glb,.txt,.md">
+        <p class="muted small">Images, JSON, glTF, GLB, text and Markdown. Files are read locally in this browser; they are not uploaded to a server.</p></div>
+      <div id="source-list" class="source-list" aria-live="polite"></div>
+      <div class="intake-footer"><p id="intake-status" class="message" aria-live="polite">Ready for your first source.</p><button id="export-project" type="button" disabled>Export project manifest</button></div>
+      <p class="muted small">Current increment: prompt/script and image previews; JSON parsing; source roles; original-file download; project manifest export. GLB/glTF files are recognised and preserved, but interactive 3D rendering is not yet integrated. The manifest does not embed binary files.</p>
+    </section>
     <section class="workspace" aria-label="Character editor">
       <div class="preview-panel">
         <div class="panel-head">
@@ -103,6 +118,8 @@
     </section>
   </main>
   <footer>Universal Character Studio · SVG renderer · offline-first · no AI API</footer>
+  <script src="./universal-project.js" defer></script>
+  <script src="./intake.js" defer></script>
   <script src="./workflow.js" defer></script>
   <script src="./studio.js" defer></script>
 </body>
