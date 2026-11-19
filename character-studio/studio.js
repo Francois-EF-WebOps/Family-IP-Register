@@ -26,6 +26,8 @@
   function renderWorkflow() {
     if (!workflowState) return;
     $("workflow-stage").value = workflowState.current_stage;
+    const activeStage = workflowState.stages.find((item) => item.stage_id === workflowState.current_stage);
+    $("workflow-status").value = activeStage.status;
     const active = workflowState.stages.find((stage) => stage.stage_id === workflowState.current_stage);
     const complete = workflowState.stages.filter((stage) => stage.status === "complete").length;
     const missing = workflowState.stages.reduce((sum, stage) => sum + stage.missing.filter((item) => item.state !== "verified").length, 0);
@@ -44,7 +46,8 @@
     });
     window.CharacterWorkflow.updateMissing(workflowState, stageId, entries);
     const active = workflowState.stages.find((stage) => stage.stage_id === stageId);
-    if (active.missing.some((item) => item.state !== "verified")) active.status = "in_progress";
+    active.status = $("workflow-status").value;
+    if (active.status === "complete" && active.missing.some((item) => item.state !== "verified")) { active.status = "in_progress"; setMessage("Resolve or verify missing details before marking this stage complete."); }
     localStorage.setItem(WORKFLOW_KEY + ":" + current.character_id, JSON.stringify(workflowState));
     renderWorkflow();
     setMessage("Workflow progress saved for " + current.name + " on this device.");
@@ -156,6 +159,7 @@
     window.CharacterWorkflow.setCurrentStage(workflowState, $("workflow-stage").value);
     renderWorkflow();
   });
+  $("workflow-status").addEventListener("change", () => { const stage = workflowState.stages.find((item) => item.stage_id === workflowState.current_stage); if (stage) stage.status = $("workflow-status").value; });
   $("save-workflow").addEventListener("click", saveWorkflow);
   $("export-workflow").addEventListener("click", () => {
     saveWorkflow();
