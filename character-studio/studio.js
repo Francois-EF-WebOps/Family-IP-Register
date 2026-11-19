@@ -14,14 +14,15 @@
 
   function renderSvg(character) {
     const id = character.character_id;
-    const skin = id === "character.fin" ? "#75452f" : "#c58b63";
-    const hair = id === "character.fin" ? "#201b1a" : "#35251f";
+    const skin = character.appearance.render_hints.skin_fill;
+    const hair = character.appearance.render_hints.hair_fill;
+    const isShortHair = character.identity.hair_description.toLowerCase().includes("short");
     const garment = character.appearance.garment_colour;
-    const hairShape = id === "character.fin"
+    const hairShape = isShortHair
       ? '<path d="M128 111 Q122 63 170 62 Q218 64 212 111 L203 99 Q194 85 182 92 Q168 78 154 94 Q140 87 135 108Z" fill="'+hair+'"/>'
       : '<path d="M122 119 Q112 55 169 55 Q225 57 217 124 L218 204 Q201 222 190 197 L193 112 Q169 94 145 112 L145 203 Q127 218 119 196Z" fill="'+hair+'"/><path d="M132 83 Q165 47 203 77 Q211 89 202 99 Q169 80 139 103Z" fill="'+hair+'"/>';
     const accessory = character.appearance.show_accessory
-      ? (id === "character.fin"
+      ? (String(character.appearance.accessory || "").toLowerCase().includes("fishing rod")
         ? '<path d="M229 220 L272 300" stroke="#8c6338" stroke-width="5" stroke-linecap="round"/><path d="M267 293 l12 16" stroke="#8c6338" stroke-width="3"/>'
         : '<path d="M222 235 Q260 224 269 265 L258 300 L222 291Z" fill="#b88c55" stroke="#765b38" stroke-width="3"/><path d="M224 240 Q244 225 263 242" fill="none" stroke="#765b38" stroke-width="3"/><circle cx="238" cy="258" r="7" fill="#c96b45"/><circle cx="253" cy="267" r="7" fill="#d6a54d"/><path d="M241 247 q-8 -12 -14 -6" fill="none" stroke="#54704b" stroke-width="3"/>')
       : "";
@@ -33,7 +34,7 @@
     } else {
       garmentShape = '<path d="M139 164 L157 174 L184 174 L202 164 L220 189 L202 210 L198 286 L141 286 L137 210 L119 189Z" fill="'+garment+'" stroke="#665c4f" stroke-width="2"/>';
     }
-    const lower = id === "character.fin"
+    const lower = character.appearance.lower_garment
       ? '<path d="M144 282 L169 282 L166 341 L139 341Z M174 282 L198 282 L204 341 L177 341Z" fill="#d7c7a5" stroke="#665c4f" stroke-width="2"/>'
       : '<path d="M143 282 L169 282 L166 341 L139 341Z M174 282 L199 282 L204 341 L177 341Z" fill="#d7c7a5" stroke="#665c4f" stroke-width="2"/>';
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 390" role="img" aria-label="Stylised '+escapeXml(character.name)+' character illustration"><rect width="340" height="390" rx="18" fill="#f7f3e9"/><ellipse cx="170" cy="356" rx="66" ry="9" fill="#ded7c9"/><path d="M151 128 Q170 113 189 128 L191 164 L149 164Z" fill="'+skin+'"/><path d="M126 105 Q127 70 169 68 Q212 69 214 108 Q211 149 170 157 Q129 148 126 105Z" fill="'+skin+'" stroke="#573c30" stroke-width="2"/>'+hairShape+'<ellipse cx="151" cy="117" rx="5" ry="7" fill="#2a211d"/><ellipse cx="189" cy="117" rx="5" ry="7" fill="#2a211d"/><path d="M162 133 Q170 138 178 132" fill="none" stroke="#6f3f32" stroke-width="2" stroke-linecap="round"/><g fill="#5b3429"><circle cx="143" cy="130" r="1.8"/><circle cx="150" cy="135" r="1.5"/><circle cx="195" cy="132" r="1.8"/><circle cx="188" cy="137" r="1.5"/></g>'+garmentShape+lower+'<path d="M143 340 L165 340 L165 350 L133 350 Q132 344 143 340 M179 340 L202 340 L210 350 L178 350Z" fill="'+skin+'"/>'+accessory+'<text x="170" y="378" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#65777a">'+escapeXml(character.name.toUpperCase())+' · DRAFT STUDY</text></svg>';
