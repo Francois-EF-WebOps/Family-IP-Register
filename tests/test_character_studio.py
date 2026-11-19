@@ -86,5 +86,36 @@ class CharacterStudioFixtureTests(unittest.TestCase):
         self.assertIn('id="identity-summary"', html)
 
 
+    def test_universal_project_model_supports_multiple_source_types_and_roles(self):
+        model = (ROOT / "character-studio" / "universal-project.js").read_text(encoding="utf-8")
+        self.assertIn('"prompt"', model)
+        self.assertIn('"image"', model)
+        self.assertIn('"json"', model)
+        self.assertIn('"glb"', model)
+        self.assertIn("function addSource(project, input)", model)
+        self.assertIn("function validate(project)", model)
+
+    def test_open_entry_ui_accepts_multiple_files_and_prompt_script(self):
+        html = (ROOT / "character-studio" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('id="source-files" type="file" multiple', html)
+        self.assertIn('id="add-prompt"', html)
+        self.assertIn('id="add-script"', html)
+        self.assertIn('id="export-project"', html)
+
+    def test_intake_preserves_local_sources_and_discloses_glb_limit(self):
+        intake = (ROOT / "character-studio" / "intake.js").read_text(encoding="utf-8")
+        html = (ROOT / "character-studio" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("URL.createObjectURL(file)", intake)
+        self.assertIn("GLB asset recognised", intake)
+        self.assertIn("interactive 3D rendering is not yet integrated", html)
+        self.assertIn("not uploaded to a server", html)
+
+    def test_claude_product_review_brief_exists_and_covers_delivery(self):
+        brief = (ROOT / "docs" / "product" / "CLAUDE_PRODUCT_REVIEW_BRIEF.md").read_text(encoding="utf-8")
+        self.assertIn("Advertising and unit economics", brief)
+        self.assertIn("Required reviewer output", brief)
+        self.assertIn("Delivery and acceptance criteria", brief)
+
+
 if __name__ == "__main__":
     unittest.main()
