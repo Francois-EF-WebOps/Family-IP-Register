@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b32">
+  <title>Universal Character Studio</title>
+  <link rel="stylesheet" href="./studio.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="back" href="../">Family IP Register</a>
+    <span class="status">LOCAL · NO ACCOUNT</span>
+  </header>
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">CHARACTER WORKSHOP / MVP 0.1</p>
+      <h1>Create once.<br>Extend endlessly.</h1>
+      <p class="lede">Keep a character's documented identity separate from changeable styling. This first renderer is deliberately stylised and procedural.</p>
+    </section>
+
+    <section class="workspace" aria-label="Character editor">
+      <div class="preview-panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">LIVE PREVIEW</p><h2 id="preview-name">Fin</h2></div>
+          <span class="draft">DRAFT</span>
+        </div>
+        <div id="preview" class="preview" role="img" aria-label="Stylised character preview"></div>
+        <p class="preview-note">Procedural SVG placeholder — not a canonical likeness or recovered character sheet.</p>
+        <div class="actions">
+          <button id="download-svg" class="primary" type="button">Export SVG</button>
+          <button id="download-json" type="button">Export JSON</button>
+        </div>
+      </div>
+
+      <div class="controls-panel">
+        <div class="field">
+          <label for="character-select">Character fixture</label>
+          <select id="character-select">
+            <option value="fin">Fin</option>
+            <option value="nik">Nik</option>
+          </select>
+        </div>
+
+        <section class="identity">
+          <div class="section-title"><div><p class="eyebrow">LOCKED SOURCE DATA</p><h2>Identity</h2></div><span class="lock">🔒 Read-only</span></div>
+          <p id="identity-summary" class="muted"></p>
+          <p class="muted small">Age, face, hair and documented character facts are not edited by outfit controls. Missing body proportions remain unspecified.</p>
+        </section>
+
+        <section class="appearance">
+          <div class="section-title"><div><p class="eyebrow">USER EDITS</p><h2>Appearance</h2></div><span class="edit">Editable</span></div>
+          <div class="field">
+            <label for="garment-colour">Garment colour</label>
+            <select id="garment-colour">
+              <option value="#f4f0df">Linen / ivory</option>
+              <option value="#d9c5a0">Sand</option>
+              <option value="#527b85">Sea blue</option>
+              <option value="#a95d48">Terracotta</option>
+              <option value="#52664e">Leaf green</option>
+              <option value="#433d56">Indigo</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="garment-style">Garment style</label>
+            <select id="garment-style">
+              <option value="tunic">Tunic</option>
+              <option value="shirt">Short-sleeve shirt</option>
+              <option value="cape">Short cape</option>
+            </select>
+          </div>
+          <label class="check"><input id="show-accessory" type="checkbox" checked> Show documented accessory</label>
+          <div class="button-row">
+            <button id="save-local" type="button">Save on this device</button>
+            <button id="load-local" type="button">Load saved</button>
+            <button id="reset" type="button">Reset appearance</button>
+          </div>
+          <p id="message" class="message" aria-live="polite">Edits stay in this browser until exported or saved.</p>
+        </section>
+      </div>
+    </section>
+    <section class="provenance">
+      <p class="eyebrow">PROVENANCE & REVIEW</p>
+      <h2>Source-backed, not source-complete</h2>
+      <p id="source-summary">Character facts are drawn from the repository's Fin &amp; Nik asset record. This editor does not establish ownership, licensing clearance, or final visual approval.</p>
+      <span class="review">Human review required before publication or sale</span>
+    </section>
+  </main>
+  <footer>Universal Character Studio · SVG renderer · offline-first · no AI API</footer>
+  <script src="./studio.js" defer></script>
+</body>
+</html>
