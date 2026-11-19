@@ -47,10 +47,13 @@
     window.CharacterWorkflow.updateMissing(workflowState, stageId, entries);
     const active = workflowState.stages.find((stage) => stage.stage_id === stageId);
     active.status = $("workflow-status").value;
-    if (active.status === "complete" && active.missing.some((item) => item.state !== "verified")) { active.status = "in_progress"; setMessage("Resolve or verify missing details before marking this stage complete."); }
+    const completionBlocked = active.status === "complete" && active.missing.some((item) => item.state !== "verified");
+    if (completionBlocked) active.status = "in_progress";
     localStorage.setItem(WORKFLOW_KEY + ":" + current.character_id, JSON.stringify(workflowState));
     renderWorkflow();
-    setMessage("Workflow progress saved for " + current.name + " on this device.");
+    setMessage(completionBlocked
+      ? "Unresolved details remain. Verify them before marking this stage complete."
+      : "Workflow progress saved for " + current.name + " on this device.");
   }
 
   function renderSvg(character) {
