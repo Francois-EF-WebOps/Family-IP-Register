@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://francois-ef-webops.github.io/Family-IP-Register/character-studio/schema.json",
+  "title": "Universal Character Studio Definition",
+  "type": "object",
+  "required": ["schema_version", "character_id", "name", "status", "identity", "appearance", "provenance"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "character_id": {"type": "string", "pattern": "^character\\.[a-z0-9-]+$"},
+    "name": {"type": "string", "minLength": 1},
+    "status": {"type": "string"},
+    "identity": {
+      "type": "object",
+      "required": ["age_years", "gender_presentation", "skin_description", "hair_description", "eye_description", "distinctive_features", "body_proportions"],
+      "properties": {
+        "age_years": {"type": "integer", "minimum": 0},
+        "gender_presentation": {"type": "string"},
+        "skin_description": {"type": "string"},
+        "hair_description": {"type": "string"},
+        "eye_description": {"type": "string"},
+        "distinctive_features": {"type": "array", "items": {"type": "string"}},
+        "body_proportions": {"type": ["object", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "appearance": {
+      "type": "object",
+      "required": ["documented_garment", "garment_colour", "garment_style", "lower_garment", "footwear", "accessory", "show_accessory"],
+      "properties": {
+        "documented_garment": {"type": "string"},
+        "garment_colour": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"},
+        "garment_style": {"enum": ["tunic", "shirt", "cape"]},
+        "lower_garment": {"type": ["string", "null"]},
+        "footwear": {"type": "string"},
+        "accessory": {"type": ["string", "null"]},
+        "show_accessory": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "personality": {"type": "array", "items": {"type": "string"}},
+    "provenance": {
+      "type": "object",
+      "required": ["source_refs", "source_note", "licensing_status", "review_status"],
+      "properties": {
+        "source_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "source_note": {"type": "string"},
+        "licensing_status": {"type": "string"},
+        "review_status": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
