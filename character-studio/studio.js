@@ -2,6 +2,9 @@
   "use strict";
   const $ = (id) => document.getElementById(id);
   const STORAGE_KEY = "family-ip-character-studio-v1";
+  const WORKFLOW_KEY = "family-ip-character-workflow-v1";
+  const WORKFLOW_STAGES = [{id:"identity",label:"Identity"},{id:"appearance",label:"Appearance"},{id:"proportions",label:"Body proportions"},{id:"reference-sheet",label:"Reference sheet"},{id:"review",label:"Source & rights review"},{id:"export",label:"Export"}];
+  let workflowState = null;
   let fixtures = {};
   let current = null;
   let originalIdentity = null;
@@ -11,6 +14,41 @@
 
   function setMessage(message) { $("message").textContent = message; }
   function activeCharacter() { return current; }
+
+  function loadWorkflow() {
+    const key = WORKFLOW_KEY + ":" + current.character_id;
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(key) || "null"); } catch (_) {}
+    workflowState = window.CharacterWorkflow.validate(saved) && saved.project_id === current.character_id
+      ? saved : window.CharacterWorkflow.create(current.character_id, WORKFLOW_STAGES);
+    renderWorkflow();
+  }
+  function renderWorkflow() {
+    if (!workflowState) return;
+    $("workflow-stage").value = workflowState.current_stage;
+    const active = workflowState.stages.find((stage) => stage.stage_id === workflowState.current_stage);
+    const complete = workflowState.stages.filter((stage) => stage.status === "complete").length;
+    const missing = workflowState.stages.reduce((sum, stage) => sum + stage.missing.filter((item) => item.state !== "verified").length, 0);
+    $("workflow-summary").textContent = complete + "/" + workflowState.stages.length + " stages complete · " + missing + " unresolved details · Saved " + new Date(workflowState.updated_at).toLocaleString();
+    $("missing-fields").value = active.missing.map((item) => item.field + (item.note ? " — " + item.note : "")).join("\n");
+    const states = active.missing.map((item) => item.state);
+    $("missing-state").value = states.length && states.every((state) => state === states[0]) ? states[0] : "unknown";
+  }
+  function saveWorkflow() {
+    const stageId = $("workflow-stage").value;
+    window.CharacterWorkflow.setCurrentStage(workflowState, stageId);
+    const state = $("missing-state").value;
+    const entries = $("missing-fields").value.split("\n").map((line) => {
+      const parts = line.split(" — ");
+      return {field: parts[0].trim(), state: state, note: parts.slice(1).join(" — ").trim()};
+    });
+    window.CharacterWorkflow.updateMissing(workflowState, stageId, entries);
+    const active = workflowState.stages.find((stage) => stage.stage_id === stageId);
+    if (active.missing.some((item) => item.state !== "verified")) active.status = "in_progress";
+    localStorage.setItem(WORKFLOW_KEY + ":" + current.character_id, JSON.stringify(workflowState));
+    renderWorkflow();
+    setMessage("Workflow progress saved for " + current.name + " on this device.");
+  }
 
   function renderSvg(character) {
     const id = character.character_id;
@@ -50,6 +88,7 @@
   function selectCharacter(key) {
     current = clone(fixtures[key]);
     originalIdentity = JSON.stringify(current.identity);
+    loadWorkflow();
     $("garment-colour").value = current.appearance.garment_colour;
     $("garment-style").value = current.appearance.garment_style;
     $("show-accessory").checked = current.appearance.show_accessory;
@@ -113,6 +152,15 @@
     } catch (error) { setMessage("Could not load save: " + error.message); }
   });
   $("reset").addEventListener("click", () => selectCharacter($("character-select").value));
+  $("workflow-stage").addEventListener("change", () => {
+    window.CharacterWorkflow.setCurrentStage(workflowState, $("workflow-stage").value);
+    renderWorkflow();
+  });
+  $("save-workflow").addEventListener("click", saveWorkflow);
+  $("export-workflow").addEventListener("click", () => {
+    saveWorkflow();
+    download(current.character_id.replaceAll(".", "-") + "-workflow.json", JSON.stringify(workflowState, null, 2) + "\n", "application/json");
+  });
   $("download-json").addEventListener("click", () => {
     const exported = clone(current);
     exported.provenance.exported_at = new Date().toISOString();
