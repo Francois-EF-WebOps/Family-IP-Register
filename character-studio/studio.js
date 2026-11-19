@@ -2,6 +2,7 @@
   "use strict";
   const $ = (id) => document.getElementById(id);
   const STORAGE_KEY = "family-ip-character-studio-v1";
+  const storageKeyFor = (characterId) => STORAGE_KEY + ":" + characterId;
   const WORKFLOW_KEY = "family-ip-character-workflow-v1";
   const WORKFLOW_STAGES = [{id:"identity",label:"Identity"},{id:"appearance",label:"Appearance"},{id:"proportions",label:"Body proportions"},{id:"reference-sheet",label:"Reference sheet"},{id:"review",label:"Source & rights review"},{id:"export",label:"Export"}];
   let workflowState = null;
@@ -137,11 +138,13 @@
   $("character-select").addEventListener("change", (event) => selectCharacter(event.target.value));
   ["garment-colour","garment-style","show-accessory"].forEach((id) => $(id).addEventListener("change", applyAppearance));
   $("save-local").addEventListener("click", () => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+    localStorage.setItem(storageKeyFor(current.character_id), JSON.stringify(current));
     setMessage("Saved on this device in this browser only.");
   });
   $("load-local").addEventListener("click", () => {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const selectedFixture = fixtures[$("character-select").value];
+    if (!selectedFixture) return setMessage("Select a character before loading a save.");
+    const raw = localStorage.getItem(storageKeyFor(selectedFixture.character_id));
     if (!raw) return setMessage("No local save found on this device.");
     try {
       const saved = JSON.parse(raw);
