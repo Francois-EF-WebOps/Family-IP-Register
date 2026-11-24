@@ -30,3 +30,9 @@ GitHub stores text catalogue records, lyrics, schemas, and documentation. Do not
 Catalogue files use UTF-8 JSONL: one JSON object per line. IDs are permanent and never recycled: MUS, CMP, REC, REL, IDN, SRC, EVD followed by four digits. Titles are labels, not identifiers.
 
 See CATALOGUE_RULES.md and RECOVERY_QUEUE.md. This first seed reflects only known archive notes and one user-described MP3 metadata screen; it does not claim full recovery.
+
+## Archive organization and duplicate control
+
+The recovery workspace is organized chronologically and by canonical entity. Read `recovery/ARCHIVE_MAP.md` first, then `recovery/DUPLICATE_POLICY.md` and `recovery/duplicate-register.jsonl`. Production assets are tracked in `catalog/assets.jsonl`; external reference works and adaptations are kept in `catalog/external-works.jsonl`; failed generation attempts are events in `recovery/generation-events.jsonl`, never recordings.
+
+Recovered Fin & Nik lyric texts are preserved in `archive/fin-nik/` and linked to evidence records. Their transcription from reports is not a substitute for checking the original messages.
