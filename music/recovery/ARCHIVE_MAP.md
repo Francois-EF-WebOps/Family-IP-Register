@@ -82,3 +82,11 @@ Dates above are source/conversation dates, not automatically creation, recording
 4. Recover the complete Fin & Nik conversation sequence and original notebook attachment `retardé`.
 5. Inventory all Android audio and Suno exports; then inspect Dropbox's 21 character-reference files.
 6. Reconcile source records and canonical IDs; only then consider metadata/tag repair.
+
+## Cross-repository overlap discovered
+
+A separate existing repository, `Francois-EF-WebOps/ai-music-provenance`, already contains Fin & Nik Album 01 / P01-T01 working records and an open draft PR #2. It contains a provisional assistant-written ZERO lyric draft, a six-panel storyboard revision and a production record with a HOLD release gate. This repository is a source/project workflow, not a reason to create a second master catalogue. Its records are now registered as sources `SRC-0019` through `SRC-0022`.
+
+**Important provenance conflict:** the ZERO wording in `ai-music-provenance` matches the wording transcribed in the 2026-11-24 uploaded recovery report, but the repository labels it assistant-written while the report attributes it to a user-provided prompt. Keep the text as one candidate composition with disputed authorship; do not silently choose either attribution. Reopen the original 2026-11-06 message before resolving.
+
+The storyboard described in the reports and the storyboard stored in `ai-music-provenance` are not text-identical. They appear to be separate revisions. Preserve both and compare before selecting the current production version.
