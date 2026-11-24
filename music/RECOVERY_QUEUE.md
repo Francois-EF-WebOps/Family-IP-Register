@@ -31,3 +31,23 @@
 
 ## Immediate next input
 Provide an Android folder inventory (filenames and basic properties) for all audio files, preferably as a folder listing or exported metadata report. Do not spend time manually filling empty album/genre/year tags for one track before the wider inventory is captured.
+
+
+## 5. Chronological and duplicate reconciliation
+- [x] Preserve 2026-10-02 archive as Version 1 source.
+- [x] Preserve 2026-10-09 archive as Version 2 source; recognize two Library entries as one logical source with two storage handles.
+- [x] Compare both uploaded 2026-11-24 reports; classify as distinct sibling reports with overlapping evidence, not exact duplicates.
+- [x] Record duplicate classes and initial decisions in `recovery/duplicate-register.jsonl`.
+- [x] Separate repeated lyric transcriptions from distinct compositions and versions.
+- [x] Catalogue ZERO and Tide Pool & Sand as distinct Fin & Nik compositions, with authorship caveats.
+- [x] Catalogue Fin and Nik as fictional characters, not artist credits.
+- [x] Separate Late Registration third-party references and adaptations from original songs.
+- [x] Record three failed generation events once each; do not create recordings for failures.
+- [ ] Reopen the original 2026-11-06 ZERO message and 2026-11-24 Tide Pool & Sand source to verify exact wording and authorship.
+- [ ] Recover the original Tsunami prompt and the `retardé` attachment; classify the latter only after inspection.
+- [ ] Inspect the 21 Dropbox character-reference files individually; calculate exact and perceptual hashes and retain canon revisions.
+- [ ] Inventory every Android audio folder and Suno export; compute SHA-256 and compare duration/codec/acoustic fingerprints before matching.
+- [ ] Recover the complete 2026-10-08 Sun discussion and the earliest available conversations for all projects.
+- [ ] Recover all ten persona names, identities, discography plans and associated track material.
+- [ ] Reconcile the external karaoke adaptation prompt and any saved derivative drafts without importing third-party lyrics.
+- [ ] Run full cross-catalogue referential and duplicate validation before marking the archive release-ready.
