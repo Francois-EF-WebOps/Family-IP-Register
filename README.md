@@ -19,6 +19,8 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 - [Asset register](REGISTER.md) — provisional inventory and review queue.
 - [Evidence standard](EVIDENCE.md) — how claims and sources are recorded.
+- [Ticketing standard](docs/TICKETING.md) — canonical GitHub Issues workflow and portfolio migration rules.
+- [Ticket schema](schemas/ticket.schema.json) — normalized read-only export schema for GitHub Issues.
 - [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.
 - [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.
 - [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
