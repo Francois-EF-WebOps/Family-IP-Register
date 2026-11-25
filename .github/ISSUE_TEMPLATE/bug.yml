@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a reproducible defect
+title: "[BUG] "
+labels: []
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is failing, and what is the impact?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest reproducible sequence.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behaviour
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0
+        - P1
+        - P2
+        - P3
+      default: 2
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Fix acceptance criteria
+      value: |
+        - [ ] Reproduction no longer fails
+        - [ ] Relevant regression test added or updated
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs and references
+      description: Include safe logs and links only. Redact credentials and personal data.
+    validations:
+      required: false
