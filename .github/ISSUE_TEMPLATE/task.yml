@@ -1,0 +1,68 @@
+name: Work item
+description: Create an actionable task, epic, research, decision, or release issue
+title: "[TASK] "
+labels: []
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - TASK
+        - EPIC
+        - RESEARCH
+        - DECISION
+        - RELEASE
+        - BLOCKER
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: State the one independently verifiable result this issue should deliver.
+      placeholder: "Deliver..."
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and scope
+      description: Include relevant links and constraints. Do not include secrets or private personal data.
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use observable, testable checkboxes. Define what proves completion.
+      value: |
+        - [ ] 
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0
+        - P1
+        - P2
+        - P3
+      default: 2
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and external counterparties
+      description: Link blocking issues or name the external dependency and next review trigger.
+    validations:
+      required: false
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and references
+      description: Link commits, pull requests, tests, documents, or source records.
+    validations:
+      required: false
