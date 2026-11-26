@@ -11,6 +11,7 @@
   let originalIdentity = null;
 
   const escapeXml = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&apos;"}[c]));
+  const safeHexColor = (value, fallback) => /^#[0-9a-f]{6}$/i.test(String(value ?? "")) ? String(value) : fallback;
   const clone = (value) => JSON.parse(JSON.stringify(value));
 
   function setMessage(message) { $("message").textContent = message; }
@@ -59,10 +60,11 @@
 
   function renderSvg(character) {
     const id = character.character_id;
-    const skin = character.appearance.render_hints.skin_fill;
-    const hair = character.appearance.render_hints.hair_fill;
+    const hints = character.appearance?.render_hints || {};
+    const skin = safeHexColor(hints.skin_fill, "#c58f72");
+    const hair = safeHexColor(hints.hair_fill, "#332820");
     const isShortHair = character.identity.hair_description.toLowerCase().includes("short");
-    const garment = character.appearance.garment_colour;
+    const garment = safeHexColor(character.appearance?.garment_colour, "#f4f0df");
     const hairShape = isShortHair
       ? '<path d="M128 111 Q122 63 170 62 Q218 64 212 111 L203 99 Q194 85 182 92 Q168 78 154 94 Q140 87 135 108Z" fill="'+hair+'"/>'
       : '<path d="M122 119 Q112 55 169 55 Q225 57 217 124 L218 204 Q201 222 190 197 L193 112 Q169 94 145 112 L145 203 Q127 218 119 196Z" fill="'+hair+'"/><path d="M132 83 Q165 47 203 77 Q211 89 202 99 Q169 80 139 103Z" fill="'+hair+'"/>';
