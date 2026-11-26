@@ -44,6 +44,32 @@ body:
         - [ ] Relevant regression test added or updated
     validations:
       required: true
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data classification
+      description: Do not include sensitive data in this public issue.
+      options:
+        - PUBLIC
+        - INTERNAL
+        - SENSITIVE
+        - RESTRICTED
+        - Not applicable
+    validations:
+      required: true
+  - type: dropdown
+    id: security_impact
+    attributes:
+      label: Security and privacy impact
+      options:
+        - NONE
+        - LOW
+        - MODERATE
+        - HIGH
+        - CRITICAL
+        - UNASSESSED
+    validations:
+      required: true
   - type: textarea
     id: evidence
     attributes:
