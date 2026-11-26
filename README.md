@@ -17,6 +17,10 @@ This repository is a **record-keeping and governance index**. It is not a declar
 
 ## Register structure
 
+- [Shared Architecture](ARCHITECTURE.md) — cross-project technical foundation, boundaries, integration contracts, and application mapping.
+- [Architecture principles](docs/architecture/PRINCIPLES.md) — local-first, human authority, least privilege, portability, provenance, and complexity controls.
+- [BorgIOS research record](docs/architecture/EXTERNAL_RESEARCH_BORGIOS.md) — concept assessment and security/licensing cautions; no code adopted.
+
 - [Asset register](REGISTER.md) — provisional inventory and review queue.
 - [Evidence standard](EVIDENCE.md) — how claims and sources are recorded.
 - [Ticketing standard](docs/TICKETING.md) — canonical GitHub Issues workflow and portfolio migration rules.
