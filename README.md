@@ -22,6 +22,7 @@ This repository is a **record-keeping and governance index**. It is not a declar
 - [Ticketing standard](docs/TICKETING.md) — canonical GitHub Issues workflow and portfolio migration rules.
 - [Ticket schema](schemas/ticket.schema.json) — normalized read-only export schema for GitHub Issues.
 - [Decision log](DECISIONS.md) — dated decisions, corrections, and unresolved issues.
+- [November 2026 portfolio update](reports/monthly/2026-11.md) — curated project decisions, repository milestones, open work, and research leads.
 - [Family Project Standard](PROJECT_STANDARD.md) — shared operating model for independent projects.
 - [Asset manifest template](ASSET_MANIFEST_TEMPLATE.md) — record provenance, rights, restrictions, and reuse.
 - [Media and Character Asset Discovery](docs/MEDIA_ASSET_DISCOVERY.md) — cross-repository discovery of existing personas, presenter characters, voice references, and media assets; verified leads are separated from unlocated files.
