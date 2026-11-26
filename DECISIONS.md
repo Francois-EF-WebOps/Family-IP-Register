@@ -32,3 +32,13 @@ Use ISO dates (YYYY-MM-DD). Record decisions, evidence, owner of the action, and
 - **Rights boundary:** no employment, client, contractor, educational, contributor-assignment, or third-party-rights records were available to complete either chain of title. Both project records therefore remain **Provisional**.
 - **Disclosure boundary:** commit dates are recorded as Git-history dates, not proof of the exact date either repository first became public. No patentability or filing conclusion is made. No private Dawny commit SHAs, source code, credentials, personal information, or unpublished technical detail are reproduced in this public register.
 - **Next action:** privately establish the creator/contributor and agreement history for both projects; confirm whether any employment/client obligations apply; reconcile the EN125 tag and divergent branch; and verify any disclosures outside GitHub before changing either record's status.
+
+
+## 2026-11-26 — November conversation and portfolio consolidation
+
+- **Decision:** maintain a curated monthly project record in `reports/monthly/`, using Family-IP-Register as the cross-project index.
+- **Record:** `reports/monthly/2026-11.md` consolidates November 1–26 project-relevant decisions, repository milestones, existing open work, proposals and research leads.
+- **Evidence rule:** GitHub PRs/issues remain authoritative for implementation status; conversation-derived ideas are explicitly marked as decisions, proposals or hypotheses.
+- **Privacy rule:** do not publish private family, health, relationship, identity, credential or confidential correspondence from conversations.
+- **Deduplication rule:** link to existing PRs/issues and create no new tickets solely because an idea appeared in conversation.
+- **Limit:** the monthly report is a curated record, not a verbatim transcript or a complete audit of all repositories.
