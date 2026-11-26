@@ -32,3 +32,16 @@ Use ISO dates (YYYY-MM-DD). Record decisions, evidence, owner of the action, and
 - **Rights boundary:** no employment, client, contractor, educational, contributor-assignment, or third-party-rights records were available to complete either chain of title. Both project records therefore remain **Provisional**.
 - **Disclosure boundary:** commit dates are recorded as Git-history dates, not proof of the exact date either repository first became public. No patentability or filing conclusion is made. No private Dawny commit SHAs, source code, credentials, personal information, or unpublished technical detail are reproduced in this public register.
 - **Next action:** privately establish the creator/contributor and agreement history for both projects; confirm whether any employment/client obligations apply; reconcile the EN125 tag and divergent branch; and verify any disclosures outside GitHub before changing either record's status.
+
+
+## 2026-11-26 — Shared architecture baseline established
+
+- **Decision:** document one shared architecture for independent family projects, with FamilyOS as the first intended application-level proof rather than the exclusive owner of the architecture.
+- **Canonical home:** Family-IP-Register; no new repository.
+- **Existing foundations retained:** Project Standard, Operations Runtime, Generation Engine, shared identity registry, evidence/provenance records, and Universal Character Studio.
+- **Architecture boundary:** shared capabilities are logical contracts, not mandatory microservices or a shared codebase. Each application retains its own domain rules, data classification, tests, licence and release cadence.
+- **Principles:** local-first and Android-aware; human authority; least privilege; optional AI; portable data; explicit provenance; tested recovery; complexity must be justified by a demonstrated use case.
+- **BorgIOS treatment:** external research reference only. No code, dependency, protocol or network component adopted. Its declared GPL-3.0 licence and inspected unsafe TLS/crypto patterns are recorded for future review.
+- **Deferred:** peer discovery, distributed storage, shared remote memory, consensus, autonomous agent colonies, cloud control plane and mandatory hosted services.
+- **Next action:** map one bounded FamilyOS workflow to existing capabilities and identify the minimum local data model and acceptance tests before implementation.
+- **Status:** documentation baseline created on branch `docs/shared-architecture-foundation`; implementation and security guarantees are not claimed.
