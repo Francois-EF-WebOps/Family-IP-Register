@@ -12,7 +12,7 @@
     "repository": {"type": "string", "pattern": "^[^/]+/[^/]+$"},
     "number": {"type": "integer", "minimum": 1},
     "title": {"type": "string", "minLength": 1},
-    "type": {"enum": ["EPIC", "TASK", "BUG", "RESEARCH", "DECISION", "RELEASE", "BLOCKER", "UNCLASSIFIED"]},
+    "type": {"enum": ["EPIC", "TASK", "BUG", "RESEARCH", "DECISION", "RELEASE", "BLOCKER", "SECURITY", "UNCLASSIFIED"]},
     "status": {"enum": ["BACKLOG", "READY", "IN_PROGRESS", "BLOCKED", "REVIEW", "DONE", "UNCLASSIFIED"]},
     "priority": {"enum": ["P0", "P1", "P2", "P3", "UNSET"]},
     "state": {"enum": ["open", "closed"]},
@@ -30,6 +30,11 @@
     "updated_at": {"type": ["string", "null"], "format": "date-time"},
     "closed_at": {"type": ["string", "null"], "format": "date-time"},
     "last_reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+    "data_classification": {"enum": ["PUBLIC", "INTERNAL", "SENSITIVE", "RESTRICTED", "UNCLASSIFIED"]},
+    "security_impact": {"enum": ["NONE", "LOW", "MODERATE", "HIGH", "CRITICAL", "UNASSESSED"]},
+    "trust_boundaries": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "security_controls": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "recovery_considerations": {"type": "array", "items": {"type": "string"}},
     "notes": {"type": "array", "items": {"type": "string"}}
   }
 }
