@@ -42,3 +42,16 @@ Use ISO dates (YYYY-MM-DD). Record decisions, evidence, owner of the action, and
 - **Privacy rule:** do not publish private family, health, relationship, identity, credential or confidential correspondence from conversations.
 - **Deduplication rule:** link to existing PRs/issues and create no new tickets solely because an idea appeared in conversation.
 - **Limit:** the monthly report is a curated record, not a verbatim transcript or a complete audit of all repositories.
+
+## 2026-11-26 — Shared architecture baseline established
+
+- **Decision:** document one shared architecture for independent family projects, with FamilyOS as the first intended application-level proof rather than the exclusive owner.
+- **Canonical home:** Family-IP-Register; no new repository.
+- **Existing foundations retained:** Project Standard, Operations Runtime, Generation Engine, shared identity registry, evidence/provenance records and Universal Character Studio.
+- **Architecture boundary:** shared capabilities are logical contracts, not mandatory microservices or a shared codebase. Each application retains its own domain rules, data classification, tests, licence and release cadence.
+- **Principles:** local-first and Android-aware; human authority; least privilege; optional AI; portable data; explicit provenance; tested recovery; complexity must be justified by a demonstrated use case.
+- **BorgIOS treatment:** external research reference only. No code, dependency, protocol or network component adopted.
+- **Deferred:** peer discovery, distributed storage, shared remote memory, consensus, autonomous agent colonies, cloud control plane and mandatory hosted services.
+- **Next action:** map one bounded FamilyOS workflow to existing capabilities and identify the minimum local data model and acceptance tests before implementation.
+- **Status:** documentation baseline only; implementation and security guarantees are not claimed.
+
