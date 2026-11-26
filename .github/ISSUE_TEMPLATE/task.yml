@@ -14,6 +14,7 @@ body:
         - DECISION
         - RELEASE
         - BLOCKER
+        - SECURITY
     validations:
       required: true
   - type: textarea
@@ -57,6 +58,46 @@ body:
     attributes:
       label: Dependencies and external counterparties
       description: Link blocking issues or name the external dependency and next review trigger.
+    validations:
+      required: false
+  - type: dropdown
+    id: data_classification
+    attributes:
+      label: Data classification
+      description: Classify the data involved; never paste sensitive data into a public issue.
+      options:
+        - PUBLIC
+        - INTERNAL
+        - SENSITIVE
+        - RESTRICTED
+        - Not applicable
+    validations:
+      required: true
+  - type: dropdown
+    id: security_impact
+    attributes:
+      label: Security and privacy impact
+      options:
+        - NONE
+        - LOW
+        - MODERATE
+        - HIGH
+        - CRITICAL
+        - UNASSESSED
+    validations:
+      required: true
+  - type: textarea
+    id: trust_boundary
+    attributes:
+      label: Trust boundaries and controls
+      description: For system changes, identify untrusted inputs, external services, permissions, secrets, and planned validation. For docs-only work, state why not applicable.
+    validations:
+      required: false
+  - type: textarea
+    id: recovery
+    attributes:
+      label: Recovery and rollback
+      description: Note backup, restore, integrity, rollback, or failure behaviour where relevant.
     validations:
       required: false
   - type: textarea
