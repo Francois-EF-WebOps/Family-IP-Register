@@ -75,7 +75,7 @@ Do not use a status label for Done: close the issue with a completion reason and
 
 Use these namespaces consistently:
 
-- Type: `type:epic`, `type:task`, `type:bug`, `type:research`, `type:decision`, `type:release`, `type:blocker`
+- Type: `type:epic`, `type:task`, `type:bug`, `type:research`, `type:decision`, `type:release`, `type:blocker`, `type:security`
 - Priority: `priority:p0`, `priority:p1`, `priority:p2`, `priority:p3`
 - Status: `status:backlog`, `status:ready`, `status:in-progress`, `status:blocked`, `status:review`
 - Optional domain labels: repository-specific and additive; do not replace the canonical namespaces.
