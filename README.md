@@ -48,3 +48,8 @@ This repository is public. Only publish information that is safe and appropriate
 ## Scope
 
 The register can cover software, research, datasets, documentation, designs, media, inventions, brands, domain names, and other creative or technical outputs. It should also record third-party dependencies, open-source components, collaborators, employment or client obligations, and any rights that may limit reuse.
+
+
+## Security
+
+- [Security and privacy baseline](docs/SECURITY.md)
