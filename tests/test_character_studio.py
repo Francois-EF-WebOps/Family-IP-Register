@@ -86,5 +86,15 @@ class CharacterStudioFixtureTests(unittest.TestCase):
         self.assertIn('id="identity-summary"', html)
 
 
+    def test_svg_colors_from_local_saves_are_strictly_validated(self):
+        self.assertIn("const safeHexColor =", SCRIPT)
+        self.assertIn("/^#[0-9a-f]{6}$/i", SCRIPT)
+        self.assertIn('safeHexColor(hints.skin_fill, "#c58f72")', SCRIPT)
+        self.assertIn('safeHexColor(hints.hair_fill, "#332820")', SCRIPT)
+        self.assertIn('safeHexColor(character.appearance?.garment_colour, "#f4f0df")', SCRIPT)
+        self.assertIn("current.appearance = {...current.appearance, ...saved.appearance}", SCRIPT)
+        self.assertIn("escapeXml(character.name)", SCRIPT)
+
+
 if __name__ == "__main__":
     unittest.main()
