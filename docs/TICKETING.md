@@ -9,11 +9,36 @@ GitHub Issues are the execution system of record for all repositories owned by F
 3. Preserve existing issue numbers, titles, discussion, labels, milestones, and PR history. Do not close or rewrite historical records merely to fit this standard.
 4. Use GitHub Issues for actionable work. Pull requests remain implementation/review records and should link to the issue with `Closes #N` only when they fully satisfy it.
 5. Do not create speculative tasks from ideas alone. Record a concrete outcome, an owner or explicit unassigned state, and acceptance criteria.
-6. Never place credentials, private family information, children's information, personal identifiers, confidential correspondence, or sensitive evidence in public issues. Link to a safe private reference instead.
-7. A ticket is Done only when acceptance criteria are met and evidence is linked. Close as completed; use not planned only with an explicit rationale.
-8. A Blocked ticket must name the blocking dependency, responsible external party where known, and next review trigger.
-9. Record dependencies with GitHub issue links. Cross-repository dependencies must use fully qualified issue URLs.
-10. Keep the original work intact. Migration is additive: inventory first, then classify and link; do not bulk-recreate backlogs.
+6. For system-affecting work, record the affected system/repository, data classification, trust boundary, security/privacy impact, and recovery implications. Mark each item not applicable with a reason where appropriate.
+7. Use the SECURITY type only for non-sensitive security work. Do not publish exploitable vulnerability details, attack instructions, secrets, or personal data in public issues; use private vulnerability reporting or a private channel for sensitive findings.
+8. Never place credentials, private family information, children's information, personal identifiers, confidential correspondence, or sensitive evidence in public issues. Link to a safe private reference instead.
+9. A ticket is Done only when acceptance criteria are met and evidence is linked. Close as completed; use not planned only with an explicit rationale.
+10. A Blocked ticket must name the blocking dependency, responsible external party where known, and next review trigger.
+11. Record dependencies with GitHub issue links. Cross-repository dependencies must use fully qualified issue URLs.
+12. Keep the original work intact. Migration is additive: inventory first, then classify and link; do not bulk-recreate backlogs.
+
+## System and security work
+
+For a task that changes a system's architecture, data flow, permissions, deployment, persistence, public interface, or external integrations, include these fields in the issue body or linked design record:
+
+- **Affected system/repository:** canonical repository and component.
+- **Data classification:** PUBLIC, INTERNAL, SENSITIVE, or RESTRICTED. Record the classification, never the sensitive data itself.
+- **Trust boundary:** inputs, outputs, external services, devices, users, and automation that cross the boundary.
+- **Security/privacy impact:** authentication, authorization, input validation, secrets, personal data, logging, retention, deletion, and exposure risks.
+- **Recovery impact:** backup, restore, integrity, rollback, and failure behaviour.
+- **Verification:** tests or manual checks that demonstrate the control works.
+
+For a low-risk documentation-only task, a short `Not applicable — documentation-only; no system/data-flow change` statement is sufficient. Do not turn every issue into a security questionnaire.
+
+Use `SECURITY` as a work type for remediation and control implementation. Public issues should describe the risk at a level safe for disclosure. Sensitive vulnerability reports must remain private.
+
+## Cross-system ticketing
+
+- Create the execution ticket in the repository that owns the affected system or artifact.
+- Create a portfolio-level EPIC in Family-IP-Register only when coordination across multiple repositories is itself a deliverable.
+- Link dependent tickets with full issue URLs; do not copy their descriptions or status into a second backlog.
+- A shared architecture decision defines interfaces and principles; each consuming system still owns its own threat model, tests, data classification, and release evidence.
+- Track the same stable issue URL in reports and dashboards. Exported snapshots are read-only and never override GitHub state.
 
 ## Canonical identity
 
